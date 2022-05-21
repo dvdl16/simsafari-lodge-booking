@@ -17,6 +17,17 @@ import { PageNotFoundComponent } from './home/page-not-found.component';
 
 // Feature Modules
 import { UserModule } from './user/user.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { BookingsComponent } from './bookings/bookings.component';
+import { SightingsComponent } from './sightings/sightings.component';
+import { CameratrapComponent } from './cameratrap/cameratrap.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +35,11 @@ import { UserModule } from './user/user.module';
     ShellComponent,
     MenuComponent,
     WelcomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavComponent,
+    BookingsComponent,
+    SightingsComponent,
+    CameratrapComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +51,13 @@ import { UserModule } from './user/user.module';
       name: 'SimSafari Lodge Booking Devtools',
       maxAge: 25, 
       logOnly: environment.production }),
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

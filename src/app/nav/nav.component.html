@@ -1,0 +1,50 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar></mat-toolbar>
+    <mat-nav-list>
+      
+      <mat-list-item routerLink='/bookings'>
+        <a matLine>Bookings</a>
+        <button mat-icon-button>
+          <mat-icon>hotel</mat-icon>
+        </button>
+      </mat-list-item>
+      
+      <mat-list-item routerLink='/sightings'>
+        <a matLine>Sightings</a>
+        <button mat-icon-button>
+          <mat-icon>pets</mat-icon>
+        </button>
+      </mat-list-item>
+      
+      <mat-list-item routerLink='/camera-trap'>
+        <a matLine>Cam Trap</a>
+        <button mat-icon-button>
+          <mat-icon>local_see</mat-icon>
+        </button>
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>SimSafari Lodge Booking</span>
+    </mat-toolbar>
+
+    <div class='container main-content'>
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
