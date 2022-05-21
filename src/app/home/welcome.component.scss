@@ -1,13 +1,11 @@
-// Adapted from https://codepen.io/Kaiyuan/pen/DjBRbV
-
 .menu-image img {
   max-height: 100%;
   max-width: 100%;
 }
 
+// Adapted from https://codepen.io/Kaiyuan/pen/DjBRbV
 .frame {
   text-align: center;
-  // display: inline-block;
   padding: 1px;
   border-width: 5px;
   border-style: solid;
@@ -24,9 +22,10 @@
 }
 
 div.menu-options-container {
-  margin-left: 8vw;
-  margin-right: 8vw;
+  margin-left: 20vw;
+  margin-right: 20vw;
   margin-top: 5%;
+  margin-bottom: 5%;
 
   padding-left: 30px;
   padding-right: 30px;
@@ -41,6 +40,17 @@ div.menu-options-container {
   
   background-image: url('../../assets/images/menu-background.svg');
   background-size: cover;
+}
+
+
+@media (max-width: 500px) {
+  div.menu-options-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 7vw;
+    margin-right: 7vw;
+    border-width: 2vw;
+  }
 }
 
 mat-grid-tile-footer {
