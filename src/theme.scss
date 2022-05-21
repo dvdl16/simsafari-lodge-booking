@@ -1,0 +1,77 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$mat-custom-dark-green: (
+    50: #e4ede2,
+    100: #bdd3b9,
+    200: #94b78e,
+    300: #6d9d63,
+    400: #528b46,
+    500: #377929,
+    600: #2f6d22,
+    700: #255d1a,
+    800: #1c4d12,
+    900: #0d3102,
+    A100: #ffffff,
+    A200: #dde6f3,
+    A400: #528b46,
+    A700: #1c4d12,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: #e0db2d,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+$mat-custom-orange: (
+    50: #fff2df,
+    100: #fedcb1,
+    200: #fdc67e,
+    300: #fbaf4b,
+    400: #fa9d26,
+    500: #f98d05,
+    600: #f58106,
+    700: #ef7208,
+    800: #e86208,
+    900: #de4609,
+    A100: #ffffff,
+    A200: #fff7f4,
+    A400: #e86208,
+    A700: #de4609,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+
+$my-app-primary: mat-palette($mat-custom-dark-green);
+$my-app-accent:  mat-palette($mat-custom-orange, 500, 900, A100);
+$my-app-warn:    mat-palette($mat-deep-orange);
+
+// Variable that combines our color definitions with the mat-light-dark function
+$my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
