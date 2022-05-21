@@ -1,8 +1,8 @@
 // Adapted from https://codepen.io/Kaiyuan/pen/DjBRbV
 
 .menu-image img {
-  max-height:100%;
-  max-width:100%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .frame {
@@ -20,17 +20,32 @@
   background-image: linear-gradient(#bd6144, #7e3e28);
   box-shadow: inset 0 2px 5px rgba(0,0,0,.6),0 5px 2px rgba(0,0,0,.1), 0 10px 20px rgba(0,0,0,.8);
   overflow: hidden;
+  background-color: transparent;
+}
+
+div.menu-options-container {
+  margin-left: 8vw;
+  margin-right: 8vw;
+  margin-top: 5%;
+
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+
+  border-width: 0.7vw;
+  border-style: solid;
+  border-image-source: url('../../assets/images/border.svg');
+  border-image-slice: 20%;
+  border-image-outset: 3.5;
+  border-image-width: 10;
+  
+  background-image: url('../../assets/images/menu-background.svg');
+  background-size: cover;
 }
 
 mat-grid-tile-footer {
   flex-direction: column;
   justify-content: center;
-}
-
-.menu-options-container {
-  padding-left: 15%;
-  padding-right: 15%;
-  padding-top: 10%;
 }
 
 .menu-info-tile mat-icon{
@@ -44,4 +59,16 @@ mat-grid-tile-footer {
 ::ng-deep mat-grid-tile.menu-info-tile div.mat-grid-tile-content {
   flex-direction: column;
   justify-content: space-around;
+}
+
+mat-grid-tile:hover{
+  border-width: 10px;
+  border-color: rgb(245, 180, 0);
+  }
+
+.menu-info-tile table:hover {
+  margin: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgb(245, 180, 0);
 }
