@@ -11,20 +11,23 @@ import { environment } from '../environments/environment';
 // Components
 import { AppComponent } from './app.component';
 import { ShellComponent } from './home/shell.component';
-import { MenuComponent } from './home/menu.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found.component';
 
-// Feature Modules
-import { UserModule } from './user/user.module';
+// Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
+// Feature Modules
+import { UserModule } from './user/user.module';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 import { BookingsComponent } from './bookings/bookings.component';
 import { SightingsComponent } from './sightings/sightings.component';
 import { CameratrapComponent } from './cameratrap/cameratrap.component';
@@ -33,7 +36,6 @@ import { CameratrapComponent } from './cameratrap/cameratrap.component';
   declarations: [
     AppComponent,
     ShellComponent,
-    MenuComponent,
     WelcomeComponent,
     PageNotFoundComponent,
     NavComponent,
@@ -58,6 +60,7 @@ import { CameratrapComponent } from './cameratrap/cameratrap.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

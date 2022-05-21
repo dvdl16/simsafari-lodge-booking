@@ -1,25 +1,52 @@
-﻿<div class="card">
-  <div class="card-header">
-    {{pageTitle}}
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="mx-auto">
-        <img src="./assets/images/logo.jpg"
-             class="img-responsive"
-             style="max-height:300px;padding-bottom:50px" />
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="text-center col-md-12">Developed by:</div>
-      <div class="col-4"
-           style="width: 200px;">
-        <h3 class="text-center">Dirk van der Laarse</h3>
-
-        <div class="text-center">
-          <a href="https://dev.laarse.co.za">dev.laarse.co.za</a>
+﻿
+<div>
+  <div class="menu-options-container">
+    <mat-grid-list #grid [cols]="cols" rowHeight="21:15" gutterSize="75px">
+      <mat-grid-tile class="frame">
+        <div class="menu-image">
+          <img src="./assets/images/bookings.PNG"><img>
         </div>
-      </div>
-    </div>
+        <mat-grid-tile-footer>
+          Manage Bookings
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="frame">
+        <mat-grid-tile-footer>View Sightings</mat-grid-tile-footer>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="menu-info-tile">
+        <table>
+          <tr>
+            <td>
+              <mat-icon>emoji_objects</mat-icon>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Information
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td>
+              <mat-icon>door_back</mat-icon>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Log Out
+            </td>
+          </tr>
+        </table>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile class="frame">
+        <mat-grid-tile-footer>Camera Trap Archive</mat-grid-tile-footer>
+      </mat-grid-tile>
+
+    </mat-grid-list>
   </div>
 </div>
