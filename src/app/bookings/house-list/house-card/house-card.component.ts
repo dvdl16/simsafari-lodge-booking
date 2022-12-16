@@ -16,8 +16,6 @@ export class HouseCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
-    console.log('this.bookings', this.bookings);
   }
 
   newBooking(): void {
