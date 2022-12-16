@@ -1,10 +1,6 @@
-import { DataSource } from '@angular/cdk/collections';
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable, ReplaySubject } from 'rxjs';
 import { Booking } from '../../booking.model';
 import { House } from '../../house.model';
-import { getBookings, State } from '../../state';
 
 @Component({
   selector: 'app-house-card',
@@ -17,14 +13,14 @@ export class HouseCardComponent implements OnInit {
 
   displayedColumns: string[] = ['fromDate', 'toDate', 'userId'];
 
-  constructor(private store: Store<State>) { }
+  constructor() { }
 
   ngOnInit(): void {
     
     console.log('this.bookings', this.bookings);
   }
 
-  nextStep(): void {
+  newBooking(): void {
 
   }
 
