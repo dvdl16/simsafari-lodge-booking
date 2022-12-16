@@ -1,0 +1,10 @@
+<div class="container">
+    <mat-accordion class="example-headers-align" multi="false">
+        <app-house-card
+            *ngFor="let house of houses"
+            [house]="house"
+            [bookings]="(filterBookings(house) | async)!"
+            (click)="houseSelected(house)">
+        </app-house-card>
+    </mat-accordion>
+</div>

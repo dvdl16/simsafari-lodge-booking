@@ -1,0 +1,15 @@
+<div>
+    <app-map
+        [selectedHouse]="(selectedHouse$ | async)!">
+    </app-map>
+    <app-house-list 
+        [errorMessage]="(errorMessage$ | async) ?? ''"
+        [bookings$]="bookings$!"
+        [houses]="(houses$ | async) ?? []"
+        [selectedBooking]="selectedBooking$ | async"
+        [selectedHouse]="(selectedHouse$ | async)!"
+        (initialiseNewBooking)="newBooking()"
+        (houseWasSelected)="houseSelected($any($event))"
+        (bookingWasSelected)="bookingSelected($any($event))">
+    </app-house-list>
+</div>

@@ -1,0 +1,13 @@
+div {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+@media (max-width: 500px) {
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 5px;
+    }
+}
