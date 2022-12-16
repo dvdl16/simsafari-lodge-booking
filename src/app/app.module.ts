@@ -28,9 +28,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { UserModule } from './user/user.module';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { BookingsComponent } from './bookings/bookings.component';
+import { EffectsModule } from '@ngrx/effects';
 import { SightingsComponent } from './sightings/sightings.component';
 import { CameratrapComponent } from './cameratrap/cameratrap.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BookingData } from './bookings/booking-data';
 
 @NgModule({
   declarations: [
@@ -47,12 +49,14 @@ import { CameratrapComponent } from './cameratrap/cameratrap.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(BookingData),
     UserModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ 
       name: 'SimSafari Lodge Booking Devtools',
       maxAge: 25, 
       logOnly: environment.production }),
+    EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
