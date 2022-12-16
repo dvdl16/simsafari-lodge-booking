@@ -41,7 +41,6 @@ import { BookingData } from './bookings/booking-data';
     WelcomeComponent,
     PageNotFoundComponent,
     NavComponent,
-    BookingsComponent,
     SightingsComponent,
     CameratrapComponent
   ],
