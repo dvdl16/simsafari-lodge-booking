@@ -14,14 +14,7 @@ import { ShellComponent } from './home/shell.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found.component';
 
-// Material
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list';
+// Shared Modules
 
 
 // Feature Modules
@@ -31,6 +24,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { EffectsModule } from '@ngrx/effects';
 import { SightingsComponent } from './sightings/sightings.component';
 import { CameratrapComponent } from './cameratrap/cameratrap.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BookingData } from './bookings/booking-data';
 
@@ -58,12 +53,7 @@ import { BookingData } from './bookings/booking-data';
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
