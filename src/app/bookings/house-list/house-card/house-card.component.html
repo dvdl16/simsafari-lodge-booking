@@ -7,7 +7,14 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-      <table mat-table [dataSource]="bookings" class="mat-elevation-z8 demo-table">
+      <span *ngIf="bookings.length === 0"><i>No upcoming bookings</i></span>
+
+      <table 
+        mat-table
+        [dataSource]="bookings"
+        class="mat-elevation-z8 demo-table"
+        *ngIf="bookings.length > 0">
+
         <!-- bookingId Column -->
         <ng-container matColumnDef="bookingId">
           <th mat-header-cell *matHeaderCellDef>bookingId</th>
