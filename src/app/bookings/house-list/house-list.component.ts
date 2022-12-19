@@ -16,7 +16,8 @@ export class HouseListComponent implements OnInit {
   @Input() houses!: House[];
   @Input() selectedBooking!: Booking | null | undefined;
   @Input() selectedHouse!: House;
-  @Output() initialiseNewBooking = new EventEmitter<newBookingData>();
+  @Output() createNewBooking = new EventEmitter<newBookingData>();
+  @Output() updateExistingBooking = new EventEmitter<Booking>();
   @Output() houseWasSelected = new EventEmitter<House>();
 
   constructor(private store: Store<State>) { }
@@ -29,7 +30,11 @@ export class HouseListComponent implements OnInit {
   }
 
   newBooking(bookingData: newBookingData): void {
-    this.initialiseNewBooking.emit(bookingData);
+    this.createNewBooking.emit(bookingData);
+  }
+
+  updateBooking(bookingData: Booking): void {
+    this.updateExistingBooking.emit(bookingData);
   }
 
   houseSelected(house: House): void {

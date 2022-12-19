@@ -6,7 +6,7 @@ import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidators } from 'src/app/shared/date.validator';
 import { GenericValidator } from 'src/app/shared/generic-validator';
 import { House } from '../../house.model';
-import { newBookingData } from '../../booking.model';
+import { Booking, newBookingData } from '../../booking.model';
 
 
 @Component({
@@ -25,7 +25,8 @@ export class BookingEditComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
       unavailableDates: moment.Moment[][],
-      house: House
+      house: House,
+      booking?: Booking
     },
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BookingEditComponent>) {
@@ -62,15 +63,15 @@ export class BookingEditComponent implements OnInit {
 
     // Define the form group
     this.bookingForm = this.formBuilder.group({
-      house: [this.data.house.id, Validators.required],
-      guestDetails: ['', Validators.compose(
+      house: [this.data.booking ? this.data.booking.house : this.data.house.id, Validators.required],
+      guestDetails: [this.data.booking ? this.data.booking.guestDetails : '', Validators.compose(
         [Validators.required, Validators.maxLength(100)]
       )],
       range: this.formBuilder.group({
-        fromDate: ['', Validators.compose(
+        fromDate: [this.data.booking ? this.data.booking.fromDate : '', Validators.compose(
           [Validators.required,DateValidators.relativeDate(0, 100)]
         )],
-        toDate: ['', Validators.compose(
+        toDate: [this.data.booking ? this.data.booking.toDate : '', Validators.compose(
           [Validators.required, DateValidators.relativeDate(0, 100)]
         )],
       }),
@@ -101,13 +102,26 @@ export class BookingEditComponent implements OnInit {
   }
   
   submit(booking: FormGroup) {
-    const bookingData = new newBookingData(
-      moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
-      moment(booking.value.range.toDate).format('YYYY-MM-DD'),
-      booking.value.house,
-      booking.value.guestDetails
-    )
-    this.dialogRef.close(bookingData);
+    if (this.data.booking) {
+      const returnData = new Booking(
+        this.data.booking.bookingId,
+        this.data.booking.userId,
+        moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
+        moment(booking.value.range.toDate).format('YYYY-MM-DD'),
+        booking.value.house,
+        booking.value.guestDetails
+      )
+      this.dialogRef.close(returnData);
+    }
+    else {
+      const returnData = new newBookingData(
+        moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
+        moment(booking.value.range.toDate).format('YYYY-MM-DD'),
+        booking.value.house,
+        booking.value.guestDetails
+      )
+      this.dialogRef.close(returnData);
+    }
   }
 
 }

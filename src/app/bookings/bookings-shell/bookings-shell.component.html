@@ -8,7 +8,8 @@
         [houses]="(houses$ | async) ?? []"
         [selectedBooking]="selectedBooking$ | async"
         [selectedHouse]="(selectedHouse$ | async)!"
-        (initialiseNewBooking)="newBooking($event)"
+        (createNewBooking)="newBooking($event)"
+        (updateExistingBooking)="updateBooking($event)"
         (houseWasSelected)="houseSelected($any($event))"
         (bookingWasSelected)="bookingSelected($any($event))">
     </app-house-list>

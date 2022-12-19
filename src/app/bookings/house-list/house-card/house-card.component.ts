@@ -13,11 +13,12 @@ import * as moment from 'moment';
 export class HouseCardComponent implements OnInit {
   @Input() house!: House;
   @Input() bookings!: Booking[];
-  @Output() initialiseNewBooking = new EventEmitter<newBookingData>();
+  @Output() createNewBooking = new EventEmitter<newBookingData>();
+  @Output() updateBooking = new EventEmitter<Booking>();
   animal!: string;
   name!: string;
 
-  displayedColumns: string[] = ['fromDate', 'toDate', 'userId'];
+  displayedColumns: string[] = ['fromDate', 'toDate', 'userId', 'actions'];
 
   constructor(public dialog: MatDialog) { }
 
@@ -25,12 +26,10 @@ export class HouseCardComponent implements OnInit {
   }
 
   newBooking(): void {
-
     // Create array of unavailable/booked dates
-    let unavailableDates = this.bookings.map(b => 
+    const unavailableDates = this.bookings.map(b => 
       [moment(b.fromDate, 'YYYY-MM-DD'), moment(b.toDate, 'YYYY-MM-DD')]
     );
-    
     const dialogRef = this.dialog.open(BookingEditComponent, {
       data: {
         unavailableDates: unavailableDates,
@@ -39,10 +38,31 @@ export class HouseCardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.initialiseNewBooking.emit(result);
+      this.createNewBooking.emit(result);
+    });
+  }
+
+  editBooking(booking: Booking): void {
+    // Create array of unavailable/booked dates
+    const unavailableDates = this.bookings
+      .filter(b => b.bookingId !== booking.bookingId)
+      .map(b => 
+        [moment(b.fromDate, 'YYYY-MM-DD'), moment(b.toDate, 'YYYY-MM-DD')]
+      );
+    const dialogRef = this.dialog.open(BookingEditComponent, {
+      data: {
+        unavailableDates: unavailableDates,
+        house: this.house,
+        booking: booking
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateBooking.emit(result);
     });
 
   }
+
 
   openDialog(): void {
   }

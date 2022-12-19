@@ -38,6 +38,10 @@ export class BookingsComponent implements OnInit {
     this.store.dispatch(BookingPageActions.createBooking(bookingData));
   }
 
+  updateBooking(bookingData: Booking): void {
+    this.store.dispatch(BookingPageActions.createBooking({booking: bookingData}));
+  }
+
   bookingSelected(booking: Booking): void {
     this.store.dispatch(BookingPageActions.setCurrentBooking({ currentBookingId: booking.bookingId }));
   }

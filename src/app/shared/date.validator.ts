@@ -4,7 +4,7 @@ import * as moment from 'moment';
 export class DateValidators {
     static relativeDate(min: number, max: number): ValidatorFn {
         return (c: AbstractControl): { [key: string]: boolean } | null => {
-            if (c.value !== ""){
+            if (c.value && c.value !== ""){
                 const today = moment();
                 const numDays = Math.round(numDaysBetween(c.value, today)) + 1;
                 if (( numDays < min) || numDays > max) {
