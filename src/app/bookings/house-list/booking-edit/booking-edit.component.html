@@ -1,0 +1,64 @@
+<form [formGroup]="bookingForm" (ngSubmit)="submit(bookingForm)">
+  <h1 mat-dialog-title>New Booking</h1>
+  <div mat-dialog-content>
+    <p>Please enter the booking details for house</p>
+    <p>
+      <mat-form-field appearance="fill" class='date-range'>
+        <mat-label>Enter From and To dates</mat-label>
+        <mat-date-range-input formGroupName="range" [rangePicker]="picker">
+          <input 
+            matStartDate
+            formControlName="fromDate"
+            placeholder="Start date"
+            [ngClass]="{'is-invalid': displayMessage['fromDate'] }">
+          <input 
+            matEndDate
+            formControlName="toDate"
+            placeholder="End date"
+            [ngClass]="{'is-invalid': displayMessage['toDate'] }">
+        </mat-date-range-input>
+        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      
+        <!-- <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
+        <mat-error *ngIf="displayMessage['fromDate']">{{displayMessage['fromDate']}}</mat-error>
+        <mat-error *ngIf="displayMessage['toDate']">{{displayMessage['toDate']}}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>House</mat-label>
+        <mat-select
+          formControlName="house">
+          <mat-option [value]="data.house.id">{{ data.house.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="displayMessage['house']">{{displayMessage['house']}}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Guest Details</mat-label>
+        <textarea 
+          formControlName="guestDetails"
+          matInput [ngClass]="{'is-invalid': displayMessage['guestDetails']}">
+        </textarea>
+        <mat-error *ngIf="displayMessage['guestDetails']">{{displayMessage['guestDetails']}}</mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button 
+      mat-button
+      type="submit"
+      cdkFocusInitial
+      [disabled]="!bookingForm.valid || !bookingForm.dirty">
+      Submit</button>
+  </div>
+
+
+</form>

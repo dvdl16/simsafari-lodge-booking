@@ -31,6 +31,14 @@ export class BookingData implements InMemoryDbService {
                 guestDetails: 'christmas',
             },
             {
+                bookingId: "c2e7b55b-48e1-4689-8c77-7c27ebf81273",
+                userId: "a_user",
+                fromDate: "2023-01-03",
+                toDate: "2023-01-06",
+                house: 2,
+                guestDetails: 'new years',
+            },
+            {
                 bookingId: "6a401ccc-053d-4027-830b-c320cbe282f0",
                 userId: "a_user",
                 fromDate: "2022-12-30",

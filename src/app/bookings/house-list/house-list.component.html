@@ -4,7 +4,8 @@
             *ngFor="let house of houses"
             [house]="house"
             [bookings]="(filterBookings(house) | async)!"
-            (click)="houseSelected(house)">
+            (click)="houseSelected(house)"
+            (initialiseNewBooking)="newBooking($event)">
         </app-house-card>
     </mat-accordion>
 </div>

@@ -15,6 +15,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { BookingEffects } from "./state/booking.effects";
 import { bookingReducer } from './state/booking.reducer';
+import { BookingEditComponent } from './house-list/booking-edit/booking-edit.component';
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 
 const bookingRoutes: Routes = [
     { path: '', component: BookingsComponent }
@@ -31,7 +33,11 @@ const bookingRoutes: Routes = [
         BookingsComponent,
         MapComponent,
         HouseListComponent,
-        HouseCardComponent
-    ]
+        HouseCardComponent,
+        BookingEditComponent
+    ],
+    providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+    ],
   })
 export class BookingModule { }

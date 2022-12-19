@@ -8,3 +8,12 @@ export class Booking {
       public guestDetails: string,
     ) {}
 }
+
+export class newBookingData {
+  constructor(
+    public fromDate: string,
+    public toDate: string,
+    public house: number,
+    public guestDetails: string,
+  ) {}
+}

@@ -34,8 +34,8 @@ export class BookingsComponent implements OnInit {
   ngOnDestroy(): void {
   }
 
-  newBooking(): void {
-    this.store.dispatch(BookingPageActions.initialiseCurrentBooking());
+  newBooking(bookingData: any): void {
+    this.store.dispatch(BookingPageActions.createBooking(bookingData));
   }
 
   bookingSelected(booking: Booking): void {
