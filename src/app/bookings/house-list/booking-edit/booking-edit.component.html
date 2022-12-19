@@ -1,5 +1,6 @@
 <form [formGroup]="bookingForm" (ngSubmit)="submit(bookingForm)">
-  <h1 mat-dialog-title>New Booking</h1>
+  <h1 mat-dialog-title *ngIf="data.booking">Edit Booking</h1>
+  <h1 mat-dialog-title *ngIf="!data.booking">New Booking</h1>
   <div mat-dialog-content>
     <p>Please enter the booking details for house</p>
     <p>
@@ -20,9 +21,6 @@
         <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
-      
-        <!-- <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
         <mat-error *ngIf="displayMessage['fromDate']">{{displayMessage['fromDate']}}</mat-error>
         <mat-error *ngIf="displayMessage['toDate']">{{displayMessage['toDate']}}</mat-error>
       </mat-form-field>
