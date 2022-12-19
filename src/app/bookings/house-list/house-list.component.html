@@ -5,8 +5,9 @@
             [house]="house"
             [bookings]="(filterBookings(house) | async)!"
             (click)="houseSelected(house)"
-            (createNewBooking)="newBooking($event)"
-            (updateBooking)="updateBooking($event)">
+            (createBooking)="newBooking($event)"
+            (updateBooking)="updateBooking($event)"
+            (deleteBooking)="deleteBooking($event)">
         </app-house-card>
     </mat-accordion>
 </div>

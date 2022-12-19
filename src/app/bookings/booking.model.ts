@@ -9,7 +9,7 @@ export class Booking {
     ) {}
 }
 
-export class newBookingData {
+export class NewBookingData {
   constructor(
     public fromDate: string,
     public toDate: string,

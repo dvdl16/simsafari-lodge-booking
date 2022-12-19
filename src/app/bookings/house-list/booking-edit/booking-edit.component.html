@@ -1,6 +1,6 @@
 <form [formGroup]="bookingForm" (ngSubmit)="submit(bookingForm)">
-  <h1 mat-dialog-title *ngIf="data.booking">Edit Booking</h1>
-  <h1 mat-dialog-title *ngIf="!data.booking">New Booking</h1>
+  <h2 mat-dialog-title *ngIf="data.booking">Edit Booking</h2>
+  <h2 mat-dialog-title *ngIf="!data.booking">New Booking</h2>
   <div mat-dialog-content>
     <p>Please enter the booking details for house</p>
     <p>
@@ -49,12 +49,22 @@
     </p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
     <button 
-      mat-button
+      *ngIf="data.booking"
+      mat-stroked-button
+      (click)="deleteBooking()"
+      color="warn"
+      class="small">
+      <mat-icon>delete</mat-icon>
+      Cancel Booking
+    </button>
+    <button mat-button (click)="onNoClick()">Close</button>
+    <button 
+      mat-raised-button
       type="submit"
       cdkFocusInitial
-      [disabled]="!bookingForm.valid || !bookingForm.dirty">
+      [disabled]="!bookingForm.valid || !bookingForm.dirty"
+      color="primary">
       Submit</button>
   </div>
 

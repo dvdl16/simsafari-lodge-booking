@@ -10,6 +10,7 @@
         [selectedHouse]="(selectedHouse$ | async)!"
         (createNewBooking)="newBooking($event)"
         (updateExistingBooking)="updateBooking($event)"
+        (deleteExistingBooking)="deleteBooking($event)"
         (houseWasSelected)="houseSelected($any($event))"
         (bookingWasSelected)="bookingSelected($any($event))">
     </app-house-list>

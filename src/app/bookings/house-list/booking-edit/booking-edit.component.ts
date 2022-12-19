@@ -6,7 +6,7 @@ import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidators } from 'src/app/shared/date.validator';
 import { GenericValidator } from 'src/app/shared/generic-validator';
 import { House } from '../../house.model';
-import { Booking, newBookingData } from '../../booking.model';
+import { Booking, NewBookingData } from '../../booking.model';
 
 
 @Component({
@@ -21,6 +21,7 @@ export class BookingEditComponent implements OnInit {
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
+  private returnData: { [key: string]: Booking | NewBookingData | string } | null = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -100,28 +101,35 @@ export class BookingEditComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  
+
   submit(booking: FormGroup) {
-    if (this.data.booking) {
-      const returnData = new Booking(
-        this.data.booking.bookingId,
-        this.data.booking.userId,
-        moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
-        moment(booking.value.range.toDate).format('YYYY-MM-DD'),
-        booking.value.house,
-        booking.value.guestDetails
-      )
-      this.dialogRef.close(returnData);
+    if (!this.returnData) {
+      if (this.data.booking) {
+        this.returnData = {'update': new Booking(
+          this.data.booking.bookingId,
+          this.data.booking.userId,
+          moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
+          moment(booking.value.range.toDate).format('YYYY-MM-DD'),
+          booking.value.house,
+          booking.value.guestDetails
+        )}
+      }
+      else {
+        this.returnData = {'create': new NewBookingData(
+          moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
+          moment(booking.value.range.toDate).format('YYYY-MM-DD'),
+          booking.value.house,
+          booking.value.guestDetails
+        )}
+      }
     }
-    else {
-      const returnData = new newBookingData(
-        moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
-        moment(booking.value.range.toDate).format('YYYY-MM-DD'),
-        booking.value.house,
-        booking.value.guestDetails
-      )
-      this.dialogRef.close(returnData);
-    }
+    this.dialogRef.close(this.returnData);
   }
 
+  deleteBooking() {
+    if (this.data.booking) {
+      this.returnData = {'delete': this.data.booking.bookingId}
+      this.dialogRef.close(this.returnData);
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Booking, newBookingData } from '../../booking.model';
+import { Booking, NewBookingData } from '../../booking.model';
 import { House } from '../../house.model';
 import { BookingEditComponent } from '../booking-edit/booking-edit.component';
 import * as moment from 'moment';
@@ -13,8 +13,9 @@ import * as moment from 'moment';
 export class HouseCardComponent implements OnInit {
   @Input() house!: House;
   @Input() bookings!: Booking[];
-  @Output() createNewBooking = new EventEmitter<newBookingData>();
+  @Output() createBooking = new EventEmitter<NewBookingData>();
   @Output() updateBooking = new EventEmitter<Booking>();
+  @Output() deleteBooking = new EventEmitter<string>();
   animal!: string;
   name!: string;
 
@@ -38,7 +39,9 @@ export class HouseCardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.createNewBooking.emit(result);
+      if ('create' in result){
+        this.createBooking.emit(result['create']);
+      }
     });
   }
 
@@ -58,15 +61,15 @@ export class HouseCardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.updateBooking.emit(result);
+      if ('update' in result){
+        this.updateBooking.emit(result['update']);
+      }
+      else if ('delete' in result){
+        this.deleteBooking.emit(result['delete']);
+      }
     });
 
   }
-
-
-  openDialog(): void {
-  }
-
 
 }
 
