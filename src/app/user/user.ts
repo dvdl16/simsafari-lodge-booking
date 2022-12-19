@@ -1,6 +1,6 @@
 /* Defines the user entity */
 export interface User {
-    id: number;
+    id: string;
     userName: string;
     isAdmin: boolean;
 }

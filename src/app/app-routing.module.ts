@@ -25,9 +25,14 @@ const appRoutes: Routes = [
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       {
         path: 'bookings',
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./bookings/booking.module').then(m => m.BookingModule)
+      },
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('./user/user.module').then(m => m.UserModule)
       },
       { path: 'sightings', component: SightingsComponent},
       { path: 'camera-trap', component: CameratrapComponent}
