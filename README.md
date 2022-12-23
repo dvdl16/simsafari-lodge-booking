@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Deployment
+
+```bash
+# Build the artefacts
+ng build
+cd dist/simsafari-lodge-booking
+
+# Set AWS profile to use
+export AWS_PROFILE=[AWS PROFILE NAME]
+
+# Upload artefacts to S3
+aws s3 sync . s3://www.[DOMAIN NAME]
+
+# Invalidate Cloudfront cache
+AWS_DISTRIBUTIONS=$(aws cloudfront list-distributions)
+AWS_DISTRIBUTION_ID=$( echo $AWS_DISTRIBUTIONS | jq -r '.DistributionList.Items | map(select(any(.Aliases.Items[]; contains("www.[DOMAIN NAME]")))|.Id)[]')
+aws cloudfront create-invalidation --distribution-id $AWS_DISTRIBUTION_ID --paths "/*";
+```
