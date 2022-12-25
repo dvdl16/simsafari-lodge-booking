@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8000/api',
+  apiUrl: 'https://abcde.execute-api.eu-west-1.amazonaws.com/beta',
+  authUrl: 'https://my-domain.auth.eu-west-1.amazoncognito.com/xxx'
 };
 
 /*

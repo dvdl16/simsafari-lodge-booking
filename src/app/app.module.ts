@@ -29,6 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BookingData } from './bookings/booking-data';
+import { HydrationEffects } from './state/hydration/hydration.effects';
+import { metaReducers, reducers } from './state/app.state';
 
 @NgModule({
   declarations: [
@@ -46,12 +48,12 @@ import { BookingData } from './bookings/booking-data';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(BookingData),
     UserModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ 
       name: 'SimSafari Lodge Booking Devtools',
       maxAge: 25, 
       logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([HydrationEffects]),
     BrowserAnimationsModule,
     LayoutModule,
     SharedModule

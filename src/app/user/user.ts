@@ -1,6 +1,8 @@
 /* Defines the user entity */
 export interface User {
-    id: string;
-    userName: string;
-    isAdmin: boolean;
+    userId: string;
+    email: string;
+    phone: string | null;
+    name: string;
+    token: string;
 }

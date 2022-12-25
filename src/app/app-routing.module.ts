@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     path: '',
     component: ShellComponent,
     children: [
-      { path: 'welcome', component: WelcomeComponent },
+      { path: 'welcome', component: WelcomeComponent,canActivate: [AuthGuard] },
       // {
       //   path: 'products',
       //   // canActivate: [AuthGuard],
