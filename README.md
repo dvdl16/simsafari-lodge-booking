@@ -30,13 +30,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ```bash
 # Build the artefacts
-ng build
-cd dist/simsafari-lodge-booking
+ng build --configuration=production
 
 # Set AWS profile to use
 export AWS_PROFILE=[AWS PROFILE NAME]
 
 # Upload artefacts to S3
+cd dist/simsafari-lodge-booking && cp index.html 404.html
 aws s3 sync . s3://www.[DOMAIN NAME]
 
 # Invalidate Cloudfront cache
