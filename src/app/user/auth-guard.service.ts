@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.store.select(getCurrentUser)
       .pipe(map(user => {
-        console.log('user', user);
         if (!user) {
           this.authService.redirectUrl = state.url;
           window.location.href = environment.authUrl;

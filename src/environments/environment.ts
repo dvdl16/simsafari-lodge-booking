@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://abcde.execute-api.eu-west-1.amazonaws.com/beta',
+  apiUrl: '/api',
   authUrl: 'https://my-domain.auth.eu-west-1.amazoncognito.com/xxx'
 };
 

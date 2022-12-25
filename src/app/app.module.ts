@@ -15,7 +15,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found.component';
 
 // Shared Modules
-// import { AuthInterceptorService } from './user/auth-interceptor.service';
+import { AuthInterceptorService } from './user/auth-interceptor.service';
 
 
 // Feature Modules
@@ -46,7 +46,7 @@ import { metaReducers, reducers } from './state/app.state';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(BookingData),
+    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData),
     UserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ 
@@ -59,11 +59,11 @@ import { metaReducers, reducers } from './state/app.state';
     SharedModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
