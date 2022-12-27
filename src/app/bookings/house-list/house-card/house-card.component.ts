@@ -16,6 +16,8 @@ export class HouseCardComponent implements OnInit {
   @Output() createBooking = new EventEmitter<NewBookingData>();
   @Output() updateBooking = new EventEmitter<Booking>();
   @Output() deleteBooking = new EventEmitter<string>();
+  @Output() cardOpened = new EventEmitter<House>();
+  @Output() cardClosed = new EventEmitter<House>();
   animal!: string;
   name!: string;
 
@@ -69,6 +71,16 @@ export class HouseCardComponent implements OnInit {
       }
     });
 
+  }
+
+  houseCardOpened(house: House): void {
+    console.log('houseCardOpened', house);
+    this.cardOpened.emit(house);
+  }
+
+  houseCardClosed(house: House): void {
+    console.log('houseCardClosed', house);
+    this.cardClosed.emit(house);
   }
 
 }

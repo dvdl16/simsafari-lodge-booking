@@ -54,4 +54,7 @@ export class BookingsComponent implements OnInit {
     this.store.dispatch(BookingPageActions.setCurrentHouse({ currentHouseId: house.id }));
   }
 
+  houseDeselected(house: House): void {
+    this.store.dispatch(BookingPageActions.clearCurrentHouse({ currentHouseId: house.id }));
+  }
 }

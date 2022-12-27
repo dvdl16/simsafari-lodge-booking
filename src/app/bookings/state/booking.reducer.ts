@@ -28,10 +28,15 @@ export const bookingReducer = createReducer<BookingState>(
             currentHouseId: action.currentHouseId
         }
     }),
-    on(BookingPageActions.clearCurrentHouse, (state): BookingState => {
-        return {
-            ...state,
-            currentHouseId: null
+    on(BookingPageActions.clearCurrentHouse, (state, action): BookingState => {
+        if (state.currentHouseId === action.currentHouseId) {
+            return {
+                ...state,
+                currentHouseId: null
+            }
+        }
+        else {
+            return state;
         }
     }),
     on(BookingPageActions.initialiseCurrentHouse, (state): BookingState => {

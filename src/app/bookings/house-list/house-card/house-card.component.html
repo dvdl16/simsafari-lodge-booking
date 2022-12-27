@@ -1,4 +1,7 @@
-<mat-expansion-panel id="{{ 'panel-' + house.id }}">
+<mat-expansion-panel 
+  id="{{ 'panel-' + house.id }}"
+  (opened)="houseCardOpened(house)"
+  (closed)="houseCardClosed(house)">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{house.name}}

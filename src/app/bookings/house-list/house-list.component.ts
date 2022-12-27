@@ -20,6 +20,7 @@ export class HouseListComponent implements OnInit {
   @Output() updateExistingBooking = new EventEmitter<Booking>();
   @Output() deleteExistingBooking = new EventEmitter<string>();
   @Output() houseWasSelected = new EventEmitter<House>();
+  @Output() houseWasDeselected = new EventEmitter<House>();
 
   constructor(private store: Store<State>) { }
 
@@ -44,6 +45,10 @@ export class HouseListComponent implements OnInit {
 
   houseSelected(house: House): void {
     this.houseWasSelected.emit(house);
+  }
+
+  clearSelectedHouse(house: House): void {
+    this.houseWasDeselected.emit(house);
   }
 
 }

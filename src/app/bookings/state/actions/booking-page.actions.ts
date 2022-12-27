@@ -3,11 +3,12 @@ import { Booking } from "../../booking.model";
 
 export const setCurrentHouse = createAction(
     '[Bookings Page] Set Current House',
-    props<{ currentHouseId: number }>()
+    props<{ currentHouseId: number | null }>()
 )
 
 export const clearCurrentHouse = createAction(
-    '[Bookings Page] Clear Current House'
+    '[Bookings Page] Clear Current House',
+    props<{ currentHouseId: number | null }>()
 )
 
 export const initialiseCurrentHouse = createAction(
