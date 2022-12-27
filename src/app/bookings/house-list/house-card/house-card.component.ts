@@ -74,12 +74,10 @@ export class HouseCardComponent implements OnInit {
   }
 
   houseCardOpened(house: House): void {
-    console.log('houseCardOpened', house);
     this.cardOpened.emit(house);
   }
 
   houseCardClosed(house: House): void {
-    console.log('houseCardClosed', house);
     this.cardClosed.emit(house);
   }
 
