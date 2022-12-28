@@ -21,7 +21,7 @@ export class BookingService {
     // Return all booking records during development
     const params = environment.production ? {fromDate: today} : undefined
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
+        // tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
