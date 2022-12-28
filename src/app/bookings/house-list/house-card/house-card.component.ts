@@ -20,8 +20,6 @@ export class HouseCardComponent implements OnInit {
   @Output() deleteBooking = new EventEmitter<string>();
   @Output() cardOpened = new EventEmitter<House>();
   @Output() cardClosed = new EventEmitter<House>();
-  animal!: string;
-  name!: string;
 
   displayedColumns: string[] = ['fromDate', 'toDate', 'userName', 'actions'];
 
