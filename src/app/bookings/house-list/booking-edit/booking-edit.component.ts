@@ -8,6 +8,7 @@ import { DateValidators } from 'src/app/shared/date.validator';
 import { GenericValidator } from 'src/app/shared/generic-validator';
 import { House } from '../../house.model';
 import { Booking } from '../../booking.model';
+import { User } from 'src/app/user/user';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class BookingEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: {
       unavailableDates: moment.Moment[][],
       house: House,
-      booking?: Booking
+      booking?: Booking,
+      currentUser: User
     },
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BookingEditComponent>) {
@@ -112,13 +114,21 @@ export class BookingEditComponent implements OnInit {
           moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
           moment(booking.value.range.toDate).format('YYYY-MM-DD'),
           [booking.value.house],
+          booking.value.guestDetails,
+          this.data.booking.userContact,
+          this.data.booking.userName
         )}
       }
       else {
+        this.returnData = {'create': new Booking(
           uuidv4(),
+          this.data.currentUser.userId,
           moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
           moment(booking.value.range.toDate).format('YYYY-MM-DD'),
           [booking.value.house],
+          booking.value.guestDetails,
+          this.data.currentUser.email,
+          this.data.currentUser.name,
         )}
       }
     }

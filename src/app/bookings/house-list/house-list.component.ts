@@ -1,6 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { getCurrentUser } from 'src/app/user/state/user.reducer';
+import { User } from 'src/app/user/user';
 import { Booking } from '../booking.model';
 import { House } from '../house.model';
 import { getBookings, getBookingsForHouse, State } from '../state';
@@ -21,10 +23,12 @@ export class HouseListComponent implements OnInit {
   @Output() deleteExistingBooking = new EventEmitter<string>();
   @Output() houseWasSelected = new EventEmitter<House>();
   @Output() houseWasDeselected = new EventEmitter<House>();
+  currentUser$!: Observable<User | null>;
 
   constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
+    this.currentUser$ = this.store.select(getCurrentUser);
   }
 
   filterBookings(house: House): Observable<Booking[]> {

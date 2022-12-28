@@ -6,14 +6,7 @@ export class Booking {
       public toDate: string,
       public Houses: string[],
       public guestDetails: string,
+      public userContact: string,
+      public userName: string
     ) {}
-}
-
-export class NewBookingData {
-  constructor(
-    public fromDate: string,
-    public toDate: string,
-    public house: number,
-    public guestDetails: string,
-  ) {}
 }

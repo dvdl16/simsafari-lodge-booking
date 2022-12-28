@@ -4,6 +4,7 @@ import { Booking } from '../../booking.model';
 import { House } from '../../house.model';
 import { BookingEditComponent } from '../booking-edit/booking-edit.component';
 import * as moment from 'moment';
+import { User } from 'src/app/user/user';
 
 @Component({
   selector: 'app-house-card',
@@ -13,7 +14,7 @@ import * as moment from 'moment';
 export class HouseCardComponent implements OnInit {
   @Input() house!: House;
   @Input() bookings!: Booking[];
-  @Output() createBooking = new EventEmitter<NewBookingData>();
+  @Input() currentUser!: User | null;
   @Output() updateBooking = new EventEmitter<Booking>();
   @Output() deleteBooking = new EventEmitter<string>();
   @Output() cardOpened = new EventEmitter<House>();
@@ -21,7 +22,7 @@ export class HouseCardComponent implements OnInit {
   animal!: string;
   name!: string;
 
-  displayedColumns: string[] = ['fromDate', 'toDate', 'userId', 'actions'];
+  displayedColumns: string[] = ['fromDate', 'toDate', 'userName', 'actions'];
 
   constructor(public dialog: MatDialog) { }
 
@@ -36,7 +37,8 @@ export class HouseCardComponent implements OnInit {
     const dialogRef = this.dialog.open(BookingEditComponent, {
       data: {
         unavailableDates: unavailableDates,
-        house: this.house
+        house: this.house,
+        currentUser: this.currentUser
       },
     });
 

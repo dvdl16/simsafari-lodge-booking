@@ -24,10 +24,21 @@
           <td mat-cell *matCellDef="let element">{{element.id}}</td>
         </ng-container>
       
-        <!-- userId Column -->
-        <ng-container matColumnDef="userId">
-          <th mat-header-cell *matHeaderCellDef>userId</th>
-          <td mat-cell *matCellDef="let element">{{element.userId}}</td>
+        <!-- userName Column -->
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef>User and Guest Details</th>
+          <!-- <td mat-cell *matCellDef="let element">{{element.userName}}</td> -->
+          <td mat-cell *matCellDef="let element">
+            <ng-template [ngIf]="element.userName + element.guestDetails > 28" [ngIfElse]="shortName">
+              <details>
+                <summary>{{ (element.userName + ": " + element.guestDetails).slice(0, 28) }}...</summary>
+                {{ (element.userName + ": " + element.guestDetails).slice(-1 * ((element.userName + ": " + element.guestDetails).length - 28)) }}
+              </details>
+            </ng-template>
+            <ng-template #shortName>
+              <span>{{ element.userName + ": " + element.guestDetails }}</span>
+            </ng-template>
+          </td>
         </ng-container>
       
         <!-- fromDate Column -->

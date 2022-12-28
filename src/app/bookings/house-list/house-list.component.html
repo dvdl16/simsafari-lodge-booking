@@ -4,6 +4,7 @@
             *ngFor="let house of houses"
             [house]="house"
             [bookings]="(filterBookings(house) | async)!"
+            [currentUser]="currentUser$ | async"
             (cardOpened)="houseSelected(house)"
             (cardClosed)="clearSelectedHouse(house)"
             (createBooking)="newBooking($event)"

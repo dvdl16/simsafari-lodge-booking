@@ -16,6 +16,8 @@ export class BookingData implements InMemoryDbService {
                 toDate: "2022-12-17",
                 Houses: ["1"],
                 guestDetails: 'family and friends',
+                userContact: "test@example.com",
+                userName: "Jane"
             },
             {
                 id: "984dec27-8138-462a-afbf-c17dee05e535",
@@ -24,6 +26,8 @@ export class BookingData implements InMemoryDbService {
                 toDate: "2022-12-18",
                 Houses: ["4"],
                 guestDetails: 'party',
+                userContact: "test@example.com",
+                userName: "Jane"
             },
             {
                 id: "c2e7b55b-48e1-4689-8c77-7c27ebf81272",
@@ -32,6 +36,8 @@ export class BookingData implements InMemoryDbService {
                 toDate: "2022-12-29",
                 Houses: ["2"],
                 guestDetails: 'christmas',
+                userContact: "test@example.com",
+                userName: "Jane"
             },
             {
                 id: "c2e7b55b-48e1-4689-8c77-7c27ebf81273",
@@ -40,6 +46,8 @@ export class BookingData implements InMemoryDbService {
                 toDate: "2023-01-06",
                 Houses: ["2"],
                 guestDetails: 'new years',
+                userContact: "test@example.com",
+                userName: "Jane"
             },
             {
                 id: "6a401ccc-053d-4027-830b-c320cbe282f0",
@@ -48,6 +56,8 @@ export class BookingData implements InMemoryDbService {
                 toDate: "2022-12-31",
                 Houses: ["5"],
                 guestDetails: 'vacation',
+                userContact: "test@example.com",
+                userName: "Jane"
             },
             {
                 id: "aabae71b-4d54-4500-93fa-424073fc5839",
@@ -56,6 +66,8 @@ export class BookingData implements InMemoryDbService {
                 toDate: "2023-01-01",
                 Houses: ["9"],
                 guestDetails: 'yes',
+                userContact: "test@example.com",
+                userName: "Jane"
             },
         ];
         return { bookings };

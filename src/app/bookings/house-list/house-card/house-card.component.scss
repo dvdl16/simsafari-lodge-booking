@@ -1,8 +1,13 @@
 mat-cell, .mat-cell {
     min-height: auto; // overrides the 'inherit' that set the min height of the row
-    padding: 12px 16px 12px 0;
+    padding: 8px 10px 8px 0;
+    font-size: 11px;
 }
 
 .mat-icon {
     font-size: 18px;
+}
+
+table {
+    max-width: 400px
 }
