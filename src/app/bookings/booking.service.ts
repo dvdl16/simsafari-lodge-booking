@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as moment from 'moment';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
@@ -16,7 +17,9 @@ export class BookingService {
   constructor(private http: HttpClient) { }
 
   getBookings(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(this.bookingsUrl)
+    const today = moment().format("YYYY-MM-DD");
+    // Return all booking records during development
+    const params = environment.production ? {fromDate: today} : undefined
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
