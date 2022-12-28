@@ -37,11 +37,11 @@ export class BookingService {
   }
 
   deleteBooking(id: string): Observable<{}> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bookingsUrl}/${id}`;
-    return this.http.delete<Booking>(url, { headers })
+    const url = environment.production ? this.bookingsUrl : `${this.bookingsUrl}/${id}`;
+    const params = environment.production ? {id: id} : undefined
+    return this.http.delete<Booking>(url, {params: params})
       .pipe(
-        tap(data => console.log('deleteBooking: ' + id)),
+        // tap(data => console.log('deleteBooking: ' + id)),
         catchError(this.handleError)
       );
   }

@@ -57,7 +57,7 @@ export class BookingEffects {
                 mergeMap(action =>
                     this.bookingService.deleteBooking(action.id)
                         .pipe(
-                            map(() => BookingApiActions.deleteBookingSuccess({ bookingId: action.id })),
+                            map(() => BookingApiActions.deleteBookingSuccess({ id: action.id })),
                             catchError(error => of(BookingApiActions.deleteBookingFailure({ error })))
                         )
                     )

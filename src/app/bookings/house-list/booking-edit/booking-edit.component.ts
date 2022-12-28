@@ -137,7 +137,7 @@ export class BookingEditComponent implements OnInit {
 
   deleteBooking() {
     if (this.data.booking) {
-      this.returnData = {'delete': this.data.booking.bookingId}
+      this.returnData = {'delete': this.data.booking.id}
       this.dialogRef.close(this.returnData);
     }
   }

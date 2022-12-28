@@ -43,8 +43,8 @@ export class HouseListComponent implements OnInit {
     this.updateExistingBooking.emit(bookingData);
   }
 
-  deleteBooking(bookingId: string): void {
-    this.deleteExistingBooking.emit(bookingId);
+  deleteBooking(id: string): void {
+    this.deleteExistingBooking.emit(id);
   }
 
   houseSelected(house: House): void {
