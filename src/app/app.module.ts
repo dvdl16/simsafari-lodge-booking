@@ -31,6 +31,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BookingData } from './bookings/booking-data';
 import { HydrationEffects } from './state/hydration/hydration.effects';
 import { metaReducers, reducers } from './state/app.state';
+import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
 
 @NgModule({
   declarations: [
