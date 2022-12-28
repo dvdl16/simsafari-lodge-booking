@@ -16,7 +16,7 @@ export class HydrationEffects implements OnInitEffects {
         if (storageValue) {
           try {
             let state = JSON.parse(storageValue);
-            state.currentUser = this.validToken(state) ? state.currentUser : null;
+            state.user.currentUser = this.validToken(state) ? state.user.currentUser : null;
             return HydrationActions.hydrateSuccess({ state });
           } catch {
             localStorage.removeItem("state");
