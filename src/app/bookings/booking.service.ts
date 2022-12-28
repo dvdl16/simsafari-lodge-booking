@@ -20,6 +20,7 @@ export class BookingService {
     const today = moment().format("YYYY-MM-DD");
     // Return all booking records during development
     const params = environment.production ? {fromDate: today} : undefined
+    return this.http.get<Booking[]>(this.bookingsUrl, {params: params})
       .pipe(
         // tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)
@@ -30,7 +31,7 @@ export class BookingService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Booking>(this.bookingsUrl, booking, { headers })
       .pipe(
-        tap(data => console.log('createBooking: ' + JSON.stringify(data))),
+        // tap(data => console.log('createBooking: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -50,7 +51,7 @@ export class BookingService {
     const url = environment.production ? this.bookingsUrl : `${this.bookingsUrl}/${booking.id}`;
     return this.http.put<Booking>(url, booking, { headers })
       .pipe(
-        tap(() => console.log('updateBooking: ' + booking.bookingId)),
+        // tap(() => console.log('updateBooking: ' + booking.id)),
         // Update the item in the list
         // This is required because the selected booking that was edited
         // was a copy of the item from the array.
