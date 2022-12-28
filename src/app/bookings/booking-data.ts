@@ -1,6 +1,9 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Booking } from './booking.model';
 
+@Injectable({
+    providedIn: 'root'
+  })
 
 export class BookingData implements InMemoryDbService {
 
@@ -11,7 +14,7 @@ export class BookingData implements InMemoryDbService {
                 userId: "a_user",
                 fromDate: "2022-12-16",
                 toDate: "2022-12-17",
-                house: 1,
+                Houses: ["1"],
                 guestDetails: 'family and friends',
             },
             {
@@ -19,7 +22,7 @@ export class BookingData implements InMemoryDbService {
                 userId: "a_user",
                 fromDate: "2022-12-17",
                 toDate: "2022-12-18",
-                house: 4,
+                Houses: ["4"],
                 guestDetails: 'party',
             },
             {
@@ -27,7 +30,7 @@ export class BookingData implements InMemoryDbService {
                 userId: "a_user",
                 fromDate: "2022-12-25",
                 toDate: "2022-12-29",
-                house: 2,
+                Houses: ["2"],
                 guestDetails: 'christmas',
             },
             {
@@ -35,7 +38,7 @@ export class BookingData implements InMemoryDbService {
                 userId: "a_user",
                 fromDate: "2023-01-03",
                 toDate: "2023-01-06",
-                house: 2,
+                Houses: ["2"],
                 guestDetails: 'new years',
             },
             {
@@ -43,7 +46,7 @@ export class BookingData implements InMemoryDbService {
                 userId: "a_user",
                 fromDate: "2022-12-30",
                 toDate: "2022-12-31",
-                house: 5,
+                Houses: ["5"],
                 guestDetails: 'vacation',
             },
             {
@@ -51,7 +54,7 @@ export class BookingData implements InMemoryDbService {
                 userId: "a_user",
                 fromDate: "2022-12-31",
                 toDate: "2023-01-01",
-                house: 9,
+                Houses: ["9"],
                 guestDetails: 'yes',
             },
         ];

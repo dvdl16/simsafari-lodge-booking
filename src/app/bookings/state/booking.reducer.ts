@@ -4,7 +4,7 @@ import { House, Houses } from "../house.model";
 import { BookingApiActions, BookingPageActions } from "./actions";
 
 export interface BookingState {
-    currentHouseId: number | null;
+    currentHouseId: string | null;
     currentBookingId: string | null;
     bookings: Booking[];
     houses: House[];
@@ -42,7 +42,7 @@ export const bookingReducer = createReducer<BookingState>(
     on(BookingPageActions.initialiseCurrentHouse, (state): BookingState => {
         return {
             ...state,
-            currentHouseId: 0
+            currentHouseId: "0"
         }
     }),
     on(BookingPageActions.setCurrentBooking, (state, action): BookingState => {

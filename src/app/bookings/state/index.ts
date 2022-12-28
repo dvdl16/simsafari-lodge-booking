@@ -27,7 +27,7 @@ export const getCurrentBooking = createSelector(
     getCurrentBookingId,
     (state, currentBookingId) => {
         if (currentBookingId === '0') {
-            return new Booking('0', '', '', '', 0, 'None')
+            return new Booking('0', '', '', '', ["0"], 'None', '', '')
             // return {
             //     bookingId: '0',
             //     userId: ' ',
@@ -60,7 +60,7 @@ export const getBookingsForHouse = (house: House) =>
     getBookings,
     (bookings) => {
       return bookings.filter(function (booking) {
-        return booking.house === house.id;
+        return booking.Houses[0] === house.id;
       });
     }
   );

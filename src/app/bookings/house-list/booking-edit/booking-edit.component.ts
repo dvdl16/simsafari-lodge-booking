@@ -65,7 +65,7 @@ export class BookingEditComponent implements OnInit {
 
     // Define the form group
     this.bookingForm = this.formBuilder.group({
-      house: [this.data.booking ? this.data.booking.house : this.data.house.id, Validators.required],
+      house: [this.data.booking ? this.data.booking.Houses[0] : this.data.house.id, Validators.required],
       guestDetails: [this.data.booking ? this.data.booking.guestDetails : '', Validators.compose(
         [Validators.required, Validators.maxLength(100)]
       )],
@@ -111,16 +111,14 @@ export class BookingEditComponent implements OnInit {
           this.data.booking.userId,
           moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
           moment(booking.value.range.toDate).format('YYYY-MM-DD'),
-          booking.value.house,
-          booking.value.guestDetails
+          [booking.value.house],
         )}
       }
       else {
           uuidv4(),
           moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
           moment(booking.value.range.toDate).format('YYYY-MM-DD'),
-          booking.value.house,
-          booking.value.guestDetails
+          [booking.value.house],
         )}
       }
     }

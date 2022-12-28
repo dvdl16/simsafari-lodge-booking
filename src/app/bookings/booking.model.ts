@@ -4,7 +4,7 @@ export class Booking {
       public userId: string,
       public fromDate: string,
       public toDate: string,
-      public house: number,
+      public Houses: string[],
       public guestDetails: string,
     ) {}
 }
