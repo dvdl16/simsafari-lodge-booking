@@ -64,7 +64,12 @@ import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
