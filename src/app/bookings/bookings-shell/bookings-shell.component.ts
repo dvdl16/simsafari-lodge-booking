@@ -47,7 +47,7 @@ export class BookingsComponent implements OnInit {
   }
 
   bookingSelected(booking: Booking): void {
-    this.store.dispatch(BookingPageActions.setCurrentBooking({ currentBookingId: booking.bookingId }));
+    this.store.dispatch(BookingPageActions.setCurrentBooking({ currentBookingId: booking.id }));
   }
 
   houseSelected(house: House): void {

@@ -46,7 +46,7 @@ export class BookingService {
 
   updateBooking(booking: Booking): Observable<Booking> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.bookingsUrl}/${booking.bookingId}`;
+    const url = environment.production ? this.bookingsUrl : `${this.bookingsUrl}/${booking.id}`;
     return this.http.put<Booking>(url, booking, { headers })
       .pipe(
         tap(() => console.log('updateBooking: ' + booking.bookingId)),

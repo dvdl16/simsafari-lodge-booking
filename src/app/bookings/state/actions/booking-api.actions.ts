@@ -33,7 +33,7 @@ export const createBookingFailure = createAction(
 
 export const  deleteBookingSuccess = createAction(
     '[Bookings API] Delete Booking Success',
-    props<{ bookingId: string }>()
+    props<{ id: string }>()
 )
 
 export const deleteBookingFailure = createAction(

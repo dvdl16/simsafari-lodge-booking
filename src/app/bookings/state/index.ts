@@ -37,7 +37,7 @@ export const getCurrentBooking = createSelector(
             //     guestDetails: 'None'
             // }
         } else {
-            return currentBookingId ? state.bookings.find(p => p.bookingId === currentBookingId) : null;
+            return currentBookingId ? state.bookings.find(p => p.id === currentBookingId) : null;
         }
     }
 )

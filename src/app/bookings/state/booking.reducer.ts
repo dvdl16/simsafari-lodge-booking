@@ -84,7 +84,7 @@ export const bookingReducer = createReducer<BookingState>(
         return {
             ...state,
             bookings: updatedBookings,
-            currentBookingId: action.booking.bookingId,
+            currentBookingId: action.booking.id,
             error: ''
         }
     }),
@@ -100,7 +100,7 @@ export const bookingReducer = createReducer<BookingState>(
         return {
             ...state,
             bookings: updatedBookings,
-            currentBookingId: action.booking.bookingId,
+            currentBookingId: action.booking.id,
             error: ''
         }
     }),
@@ -111,7 +111,7 @@ export const bookingReducer = createReducer<BookingState>(
         }
     }),
     on(BookingApiActions.deleteBookingSuccess, (state, action): BookingState =>{
-        const updatedBookings = state.bookings.filter(booking => booking.bookingId !== action.bookingId)
+        const updatedBookings = state.bookings.filter(booking => booking.id !== action.id)
         return {
             ...state,
             bookings: updatedBookings,

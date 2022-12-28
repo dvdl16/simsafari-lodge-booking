@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Booking, NewBookingData } from '../../booking.model';
+import { Booking } from '../../booking.model';
 import { House } from '../../house.model';
 import { BookingEditComponent } from '../booking-edit/booking-edit.component';
 import * as moment from 'moment';
@@ -50,7 +50,7 @@ export class HouseCardComponent implements OnInit {
   editBooking(booking: Booking): void {
     // Create array of unavailable/booked dates
     const unavailableDates = this.bookings
-      .filter(b => b.bookingId !== booking.bookingId)
+      .filter(b => b.id !== booking.id)
       .map(b => 
         [moment(b.fromDate, 'YYYY-MM-DD'), moment(b.toDate, 'YYYY-MM-DD')]
       );

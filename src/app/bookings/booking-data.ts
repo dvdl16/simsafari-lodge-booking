@@ -7,7 +7,7 @@ export class BookingData implements InMemoryDbService {
     createDb() {
         const bookings: Booking[] = [
             {
-                bookingId: "2b1f8173-32e7-41b0-b631-0f8918026e3d",
+                id: "2b1f8173-32e7-41b0-b631-0f8918026e3d",
                 userId: "a_user",
                 fromDate: "2022-12-16",
                 toDate: "2022-12-17",
@@ -15,7 +15,7 @@ export class BookingData implements InMemoryDbService {
                 guestDetails: 'family and friends',
             },
             {
-                bookingId: "984dec27-8138-462a-afbf-c17dee05e535",
+                id: "984dec27-8138-462a-afbf-c17dee05e535",
                 userId: "a_user",
                 fromDate: "2022-12-17",
                 toDate: "2022-12-18",
@@ -23,7 +23,7 @@ export class BookingData implements InMemoryDbService {
                 guestDetails: 'party',
             },
             {
-                bookingId: "c2e7b55b-48e1-4689-8c77-7c27ebf81272",
+                id: "c2e7b55b-48e1-4689-8c77-7c27ebf81272",
                 userId: "a_user",
                 fromDate: "2022-12-25",
                 toDate: "2022-12-29",
@@ -31,7 +31,7 @@ export class BookingData implements InMemoryDbService {
                 guestDetails: 'christmas',
             },
             {
-                bookingId: "c2e7b55b-48e1-4689-8c77-7c27ebf81273",
+                id: "c2e7b55b-48e1-4689-8c77-7c27ebf81273",
                 userId: "a_user",
                 fromDate: "2023-01-03",
                 toDate: "2023-01-06",
@@ -39,7 +39,7 @@ export class BookingData implements InMemoryDbService {
                 guestDetails: 'new years',
             },
             {
-                bookingId: "6a401ccc-053d-4027-830b-c320cbe282f0",
+                id: "6a401ccc-053d-4027-830b-c320cbe282f0",
                 userId: "a_user",
                 fromDate: "2022-12-30",
                 toDate: "2022-12-31",
@@ -47,7 +47,7 @@ export class BookingData implements InMemoryDbService {
                 guestDetails: 'vacation',
             },
             {
-                bookingId: "aabae71b-4d54-4500-93fa-424073fc5839",
+                id: "aabae71b-4d54-4500-93fa-424073fc5839",
                 userId: "a_user",
                 fromDate: "2022-12-31",
                 toDate: "2023-01-01",

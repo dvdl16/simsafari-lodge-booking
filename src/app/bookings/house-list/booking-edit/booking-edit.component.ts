@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -6,7 +7,7 @@ import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidators } from 'src/app/shared/date.validator';
 import { GenericValidator } from 'src/app/shared/generic-validator';
 import { House } from '../../house.model';
-import { Booking, NewBookingData } from '../../booking.model';
+import { Booking } from '../../booking.model';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class BookingEditComponent implements OnInit {
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
-  private returnData: { [key: string]: Booking | NewBookingData | string } | null = null;
+  private returnData: { [key: string]: Booking | string } | null = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -106,7 +107,7 @@ export class BookingEditComponent implements OnInit {
     if (!this.returnData) {
       if (this.data.booking) {
         this.returnData = {'update': new Booking(
-          this.data.booking.bookingId,
+          this.data.booking.id,
           this.data.booking.userId,
           moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
           moment(booking.value.range.toDate).format('YYYY-MM-DD'),
@@ -115,7 +116,7 @@ export class BookingEditComponent implements OnInit {
         )}
       }
       else {
-        this.returnData = {'create': new NewBookingData(
+          uuidv4(),
           moment(booking.value.range.fromDate).format('YYYY-MM-DD'),
           moment(booking.value.range.toDate).format('YYYY-MM-DD'),
           booking.value.house,
