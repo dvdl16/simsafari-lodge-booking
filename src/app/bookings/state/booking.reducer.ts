@@ -79,7 +79,7 @@ export const bookingReducer = createReducer<BookingState>(
     }),
     on(BookingApiActions.updateBookingSuccess, (state, action): BookingState => {
         const updatedBookings = state.bookings.map(
-            item => action.booking.bookingId === item.bookingId ? action.booking : item
+            item => action.booking.id === item.id ? action.booking : item
         );
         return {
             ...state,

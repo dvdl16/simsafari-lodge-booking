@@ -15,6 +15,7 @@ export class HouseCardComponent implements OnInit {
   @Input() house!: House;
   @Input() bookings!: Booking[];
   @Input() currentUser!: User | null;
+  @Output() createBooking = new EventEmitter<Booking>();
   @Output() updateBooking = new EventEmitter<Booking>();
   @Output() deleteBooking = new EventEmitter<string>();
   @Output() cardOpened = new EventEmitter<House>();

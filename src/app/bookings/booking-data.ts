@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Booking } from './booking.model';
 
@@ -72,4 +73,14 @@ export class BookingData implements InMemoryDbService {
         ];
         return { bookings };
     }
+
+    genId(bookings: Booking[]): string {
+        return randomString(40, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    }
+}
+
+function randomString(length: number, chars: string) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
 }

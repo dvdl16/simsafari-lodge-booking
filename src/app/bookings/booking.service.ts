@@ -25,9 +25,7 @@ export class BookingService {
 
   createBooking(booking: Booking): Observable<Booking> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    // Booking Id must be null for the Web API to assign an Id
-    const newBooking = { ...booking, bookingId: null };
-    return this.http.post<Booking>(this.bookingsUrl, newBooking, { headers })
+    return this.http.post<Booking>(this.bookingsUrl, booking, { headers })
       .pipe(
         tap(data => console.log('createBooking: ' + JSON.stringify(data))),
         catchError(this.handleError)
