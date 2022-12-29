@@ -25,7 +25,23 @@ div.container {
     border-image-slice: 20%;
     border-image-outset: 3.5;
     border-image-width: 8;
+}
 
+@media (max-width: 500px) {
+    div.container {
+        background-color: #303030;
+        margin-left: 5px;
+        margin-right: 12px;
+        margin-top: 12px;
+        margin-bottom: 10px;
+    
+        border-width: 0.9vw;
+        border-style: solid;
+        border-image-source: url('../../../../assets/images/border.svg');
+        border-image-slice: 20%;
+        border-image-outset: 3.5;
+        border-image-width: 8;
+    }
 }
 
 .mat-expansion-panel {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-nav',
@@ -15,6 +16,15 @@ export class NavComponent {
       map(result => result.matches),
       shareReplay()
     );
+  
+  toggle(nav: MatSidenav) {
+    const isSmallScreen = this.breakpointObserver.isMatched(
+      Breakpoints.Handset
+    );
+    if (isSmallScreen) {
+      nav.toggle();
+    }
+  }
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
