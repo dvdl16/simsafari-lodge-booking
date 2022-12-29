@@ -1,5 +1,6 @@
-@import '~@angular/material/theming';
-@include mat-core();
+@use '@angular/material' as mat;
+
+@include mat.core();
 
 $mat-custom-dark-green: (
     50: #e4ede2,
@@ -17,19 +18,19 @@ $mat-custom-dark-green: (
     A400: #528b46,
     A700: #1c4d12,
     contrast: (
-        50: $black-87-opacity,
-        100: $black-87-opacity,
-        200: $black-87-opacity,
-        300: $black-87-opacity,
-        400: $black-87-opacity,
+        50: black,
+        100: black,
+        200: black,
+        300: black,
+        400: black,
         500: white,
         600: white,
         700: white,
         800: white,
         900: white,
-        A100: $black-87-opacity,
-        A200: $black-87-opacity,
-        A400: $black-87-opacity,
+        A100: black,
+        A200: black,
+        A400: black,
         A700: white,
     )
 );
@@ -50,28 +51,45 @@ $mat-custom-orange: (
     A400: #e86208,
     A700: #de4609,
     contrast: (
-        50: $black-87-opacity,
-        100: $black-87-opacity,
-        200: $black-87-opacity,
-        300: $black-87-opacity,
-        400: $black-87-opacity,
+        50: black,
+        100: black,
+        200: black,
+        300: black,
+        400: black,
         500: white,
         600: white,
         700: white,
         800: white,
         900: white,
-        A100: $black-87-opacity,
-        A200: $black-87-opacity,
-        A400: $black-87-opacity,
+        A100: black,
+        A200: black,
+        A400: black,
         A700: white,
     )
 );
 
 
-$my-app-primary: mat-palette($mat-custom-dark-green);
-$my-app-accent:  mat-palette($mat-custom-orange, 500, 900, A100);
-$my-app-warn:    mat-palette($mat-deep-orange);
+// $my-app-primary: mat-palette($mat-custom-dark-green);
+// $my-app-accent:  mat-palette($mat-custom-orange, 500, 900, A100);
+// $my-app-warn:    mat-palette($mat-deep-orange);
+
+$my-app-primary: mat.define-palette($mat-custom-dark-green);
+$my-app-accent:  mat.define-palette($mat-custom-orange, 500, 900, A100);
+$my-app-warn:    mat.define-palette(mat.$deep-orange-palette);
+
+
 
 // Variable that combines our color definitions with the mat-light-dark function
-$my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
-@include angular-material-theme($my-app-theme);
+// $my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
+// @include angular-material-theme($my-app-theme);
+// @include mat.core-theme($my-app-theme);
+
+$my-app-theme: mat.define-dark-theme((
+ color: (
+   primary: $my-app-primary,
+   accent: $my-app-accent,
+   warn: $my-app-warn,
+ ),
+));
+
+@include mat.all-component-themes($my-app-theme);

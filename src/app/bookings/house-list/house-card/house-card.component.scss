@@ -1,6 +1,6 @@
-mat-cell, .mat-cell {
-    min-height: auto; // overrides the 'inherit' that set the min height of the row
-    padding: 8px 10px 8px 0;
+mat-cell, .mat-mdc-cell {
+    // min-height: auto; // overrides the 'inherit' that set the min height of the row
+    padding: 8px 10px 8px 2px;
     font-size: 11px;
 }
 
@@ -9,7 +9,7 @@ mat-cell, .mat-cell {
 }
 
 table {
-    max-width: 380px
+    max-width: 340px
 }
 
 div.container {
@@ -31,7 +31,7 @@ div.container {
     div.container {
         background-color: #303030;
         margin-left: 5px;
-        margin-right: 12px;
+        margin-right: 6px;
         margin-top: 12px;
         margin-bottom: 10px;
     
@@ -49,6 +49,19 @@ div.container {
     border: 2px solid #80300c;
 }
 
+// Avoid default word wrapping of title
+::ng-deep .mat-expansion-panel-header-title {
+    flex-basis: auto !important;
+}
+
+// Change default padding
 ::ng-deep .mat-expansion-panel-body {
-    padding: 0 4px 16px !important;
+    padding: 0 8px 16px !important;
+}
+::ng-deep .mdc-data-table__cell, .mdc-data-table__header-cell {
+    padding: 0 2px 0 2px;
+}
+
+th {
+    font-size: 11px;
 }

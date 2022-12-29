@@ -46,9 +46,9 @@ import { ScriptService } from './_helpers/script.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
-    //   delay: 2000
-    // }),
+    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
+      delay: 2000
+    }),
     UserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ 

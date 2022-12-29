@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateValidators } from 'src/app/shared/date.validator';
 import { GenericValidator } from 'src/app/shared/generic-validator';
