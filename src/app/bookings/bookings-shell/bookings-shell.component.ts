@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Booking } from '../booking.model';
 import { House } from '../house.model';
-import { getBookings, getCurrentBooking, getCurrentHouse, getError, getHouses, State } from '../state';
+import { getBookings, getCurrentBooking, getCurrentHouse, getError, getHouses, isBookingsLoading, State } from '../state';
 import { BookingPageActions } from '../state/actions';
 
 @Component({
@@ -18,6 +18,7 @@ export class BookingsComponent implements OnInit {
   selectedBooking$!: Observable<Booking | null | undefined>;
   selectedHouse$!: Observable<House | null | undefined>;
   errorMessage$!: Observable<string>;
+  loading$!: Observable<boolean>;
 
   constructor(private store: Store<State>) { }
 
@@ -29,6 +30,7 @@ export class BookingsComponent implements OnInit {
     this.errorMessage$ = this.store.select(getError);
     this.selectedBooking$ = this.store.select(getCurrentBooking);
     this.selectedHouse$ = this.store.select(getCurrentHouse);
+    this.loading$ = this.store.select(isBookingsLoading);
   }
 
   ngOnDestroy(): void {

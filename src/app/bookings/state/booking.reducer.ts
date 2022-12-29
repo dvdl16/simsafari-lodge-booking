@@ -9,6 +9,7 @@ export interface BookingState {
     bookings: Booking[];
     houses: House[];
     error: string;
+    isLoading: boolean;
 }
 
 const initialState: BookingState = {
@@ -16,7 +17,8 @@ const initialState: BookingState = {
     currentBookingId: null,
     bookings: [],
     houses: Houses,
-    error: ''
+    error: '',
+    isLoading: false
 }
 
 // Reducer
@@ -63,18 +65,26 @@ export const bookingReducer = createReducer<BookingState>(
             currentBookingId: '0'
         }
     }),
+    on(BookingPageActions.loadBookings, (state): BookingState => {
+        return {
+            ...state,
+            isLoading: true
+        }
+    }),
     on(BookingApiActions.loadBookingsSuccess, (state, action): BookingState => {
         return {
             ...state,
             bookings: action.bookings,
-            error: ''
+            error: '',
+            isLoading: false
         }
     }),
     on(BookingApiActions.loadBookingsFailure, (state, action): BookingState => {
         return {
             ...state,
             bookings: [],
-            error: action.error
+            error: action.error,
+            isLoading: false
         }
     }),
     on(BookingApiActions.updateBookingSuccess, (state, action): BookingState => {

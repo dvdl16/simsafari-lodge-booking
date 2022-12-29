@@ -55,6 +55,11 @@ export const getBookings = createSelector(
     state => state.bookings
 )
 
+export const isBookingsLoading = createSelector(
+    getBookingsFeatureState,
+    state => state.isLoading
+)
+
 export const getBookingsForHouse = (house: House) =>
   createSelector(
     getBookings,

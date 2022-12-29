@@ -1,5 +1,8 @@
 <div class="container">
-    <mat-accordion class="example-headers-align" multi="false">
+    <mat-accordion 
+        *ngIf="!loading; else spinner"
+        class="example-headers-align"
+        multi="false">
         <app-house-card
             *ngFor="let house of houses"
             [house]="house"
@@ -12,4 +15,13 @@
             (deleteBooking)="deleteBooking($event)">
         </app-house-card>
     </mat-accordion>
+
+    <ng-template #spinner>
+        <div 
+            class="spinner-container"
+            fxLayout="row"
+            fxLayoutAlign="center center">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
 </div>

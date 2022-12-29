@@ -5,6 +5,7 @@
     <app-house-list 
         [errorMessage]="(errorMessage$ | async) ?? ''"
         [bookings$]="bookings$!"
+        [loading]="loading$ | async"
         [houses]="(houses$ | async) ?? []"
         [selectedBooking]="selectedBooking$ | async"
         [selectedHouse]="(selectedHouse$ | async)!"

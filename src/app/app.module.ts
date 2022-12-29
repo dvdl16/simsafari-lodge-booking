@@ -47,7 +47,9 @@ import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData),
+    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
+      delay: 2000
+    }),
     UserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ 

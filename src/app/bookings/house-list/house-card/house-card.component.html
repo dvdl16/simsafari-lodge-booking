@@ -82,7 +82,12 @@
       
 
       <mat-action-row>
-        <button mat-raised-button color="primary" (click)="newBooking()">New Booking</button>
+        <button 
+          mat-raised-button
+          color="primary"
+          [disabled]="!house.allowBookings"
+          (click)="newBooking()">
+          {{ house.allowBookings ? "New Booking" : "Bookings Disabled"  }}</button>
       </mat-action-row>
   </mat-expansion-panel>
 </div>

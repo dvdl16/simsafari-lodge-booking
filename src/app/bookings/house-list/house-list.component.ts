@@ -5,7 +5,7 @@ import { getCurrentUser } from 'src/app/user/state/user.reducer';
 import { User } from 'src/app/user/user';
 import { Booking } from '../booking.model';
 import { House } from '../house.model';
-import { getBookings, getBookingsForHouse, State } from '../state';
+import { getBookingsForHouse, State } from '../state';
 
 @Component({
   selector: 'app-house-list',
@@ -15,6 +15,7 @@ import { getBookings, getBookingsForHouse, State } from '../state';
 export class HouseListComponent implements OnInit {
   @Input() errorMessage!: string;
   @Input() bookings$!: Observable<Booking[]>;
+  @Input() loading!: boolean | null;
   @Input() houses!: House[];
   @Input() selectedBooking!: Booking | null | undefined;
   @Input() selectedHouse!: House;
