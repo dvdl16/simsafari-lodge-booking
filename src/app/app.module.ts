@@ -23,7 +23,6 @@ import { UserModule } from './user/user.module';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { EffectsModule } from '@ngrx/effects';
-import { SightingsComponent } from './sightings/sightings.component';
 import { CameratrapComponent } from './cameratrap/cameratrap.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
@@ -32,6 +31,7 @@ import { BookingData } from './bookings/booking-data';
 import { HydrationEffects } from './state/hydration/hydration.effects';
 import { metaReducers, reducers } from './state/app.state';
 import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
+import { ScriptService } from './_helpers/script.service';
 
 @NgModule({
   declarations: [
@@ -40,16 +40,15 @@ import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
     WelcomeComponent,
     PageNotFoundComponent,
     NavComponent,
-    SightingsComponent,
     CameratrapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
-      delay: 2000
-    }),
+    // environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
+    //   delay: 2000
+    // }),
     UserModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ 
@@ -62,16 +61,17 @@ import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
     SharedModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true
+    // },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ErrorInterceptorService,
+    //   multi: true
+    // },
+    ScriptService
   ],
   bootstrap: [AppComponent]
 })

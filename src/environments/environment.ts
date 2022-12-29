@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: '/api',
-  authUrl: 'https://my-domain.auth.eu-west-1.amazoncognito.com/xxx'
+  authUrl: 'https://onsjabulani.auth.eu-west-1.amazoncognito.com/login?client_id=4k3dq5j2nouih7bdp7smnei8lf&response_type=token&scope=email+openid+profile&redirect_uri=https%3A%2F%2Fwww.onsjabulani.co.za/user/login',
+  iNatApiUrl: 'https://www.inaturalist.org/observations/dirkvdl16.json'
 };
 
 /*

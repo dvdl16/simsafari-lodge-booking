@@ -1,0 +1,13 @@
+.sighting-card {
+    max-width: 400px;
+  }
+  
+.sighting-header-image {
+    background-size: cover;
+}
+
+img {
+    // max-height: 280px;
+    min-width: 200px;
+    object-fit: cover;
+}
