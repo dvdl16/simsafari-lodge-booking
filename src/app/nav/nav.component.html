@@ -3,7 +3,11 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar></mat-toolbar>
+    <mat-toolbar>
+      <h1 class="page-title">
+        Jabulani <br>Bookings
+      </h1>
+    </mat-toolbar>
     <mat-nav-list>
       
       <mat-list-item routerLink='/welcome'>
@@ -46,7 +50,6 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>SimSafari Lodge Booking</span>
     </mat-toolbar>
 
     <div class='container main-content'>

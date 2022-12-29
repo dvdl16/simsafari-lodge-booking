@@ -19,3 +19,28 @@
   top: 0;
   z-index: 1;
 }
+
+mat-toolbar.mat-primary {
+  background-color: #303030;
+  max-height: 18px;
+}
+
+mat-sidenav.mat-drawer.mat-sidenav.sidenav {
+  background-color: #303030;
+  background-image: url('../../assets/images/side-border.svg');
+  background-size: cover;
+  min-width: 175px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+h1.page-title {
+  padding-top: 20px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-align: center;
+}
+
+.mat-drawer-side {
+  border-right: 0px;
+}
