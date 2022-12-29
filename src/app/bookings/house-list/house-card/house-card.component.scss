@@ -9,5 +9,30 @@ mat-cell, .mat-cell {
 }
 
 table {
-    max-width: 280px
+    max-width: 380px
+}
+
+div.container {
+    background-color: #303030;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+
+    border-width: 0.4vw;
+    border-style: solid;
+    border-image-source: url('../../../../assets/images/border.svg');
+    border-image-slice: 20%;
+    border-image-outset: 3.5;
+    border-image-width: 8;
+
+}
+
+.mat-expansion-panel {
+    background-color: #303030;
+    border: 2px solid #80300c;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 4px 16px !important;
 }
