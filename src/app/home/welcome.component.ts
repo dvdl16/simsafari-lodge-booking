@@ -1,5 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../user/auth.service';
 
 @Component({
     templateUrl: './welcome.component.html',
@@ -18,7 +20,9 @@ export class WelcomeComponent implements OnInit{
     }
 
     // Adjust grid based on screen size
-    constructor(private breakpointObserver: BreakpointObserver) {
+    constructor(private breakpointObserver: BreakpointObserver,
+                private authService: AuthService,
+                private router: Router) {
         this.breakpointObserver.observe([
           Breakpoints.XSmall,
           Breakpoints.Small,
@@ -47,5 +51,10 @@ export class WelcomeComponent implements OnInit{
       }
     
       ngOnInit() {
+      }
+
+      logOut(): void {
+        this.authService.logout();
+        window.location.reload();
       }
 }
