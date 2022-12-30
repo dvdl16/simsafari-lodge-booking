@@ -82,3 +82,7 @@ mat-grid-tile:hover{
   border-style: solid;
   border-color: rgb(245, 180, 0);
 }
+
+::ng-deep mat-grid-list {
+  margin-bottom: 40px;
+}
