@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Sighting } from './sighting.model';
 import { getSightings, isSightingsLoading, State } from './state';
 import { SightingPageActions } from './state/actions';
@@ -18,8 +18,14 @@ export class SightingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(SightingPageActions.loadSightings());
-    this.sightings$ = this.store.select(getSightings);
+    this.sightings$ = this.getAndSortSightings();
     this.loading$ = this.store.select(isSightingsLoading);
+  }
+
+  getAndSortSightings(): Observable<Sighting[]> {
+      return this.store.select(getSightings).pipe(
+        map(results => results.slice().sort((a,b) => b.observed_on.localeCompare(a.observed_on)))
+      );
   }
 
 

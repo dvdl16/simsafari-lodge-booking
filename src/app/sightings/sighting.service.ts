@@ -17,7 +17,7 @@ export class SightingService {
 
   getSightings(): Observable<Sighting[]> {
     const params = {
-      limit: 10,
+      limit: 25,
       order: "desc",
       order_by: "observed_on"
     }

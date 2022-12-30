@@ -7,7 +7,51 @@
 }
 
 img {
-    // max-height: 280px;
-    min-width: 200px;
     object-fit: cover;
+    width: auto;
+    height: 220px;
+}
+
+mat-chip.classification {
+    background-color: #f98d05;
+}
+
+mat-chip.date {
+    background-color: #94b78e;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none; 
+  color: #fff;
+}
+
+$colors: #505a5c,#6b5b95,#f79b07, #d64161, #ff7b25, #494521,  #283a50;
+
+.avatar {
+    color: #fff; 
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:100%;
+    width:50px;
+    height: 50px;
+    font-weight: 600;
+  }
+
+  @for $i from 1 through length($colors) {
+    .avatar:nth-child(#{length($colors)}n+#{$i}) {
+        background: lighten(nth($colors, $i), 20%);
+    }
+}
+
+.spinner-container {
+    margin: 20% 40%;
+}
+
+.more {
+    padding: 20% 40%;
 }

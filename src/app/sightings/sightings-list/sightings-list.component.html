@@ -1,32 +1,52 @@
 <div *ngIf="!loading; else spinner">
-    <mat-grid-list cols="3" rowHeight="1:1.3">
+    <mat-grid-list cols="3" rowHeight="1:1.1">
         <mat-grid-tile 
             *ngFor="let sighting of sightings">
-            <mat-card appearance="outlined" class="sighting-card" >
-                <mat-card-header>
-                <div mat-card-avatar class="sighting-header-image"></div>
-                <mat-card-title>{{ sighting.taxon.common_name ? sighting.taxon.common_name.name : "Unidentified" }}</mat-card-title>
-                <mat-card-subtitle>{{ sighting.iconic_taxon.name }}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image [src]="sighting.photos[0].medium_url" alt="Photo of a Shiba Inu">
-                <mat-card-content>
-                <p>
-                    <!-- <mat-chip-listbox aria-label="Fish selection"> -->
-                        <!-- <mat-chip-row>One fish</mat-chip-row>
-                        <mat-chip-row>Two fish</mat-chip-row>
-                        <mat-chip-row color="accent" selected>Accent fish</mat-chip-row>
-                        <mat-chip-row color="warn">Warn fish</mat-chip-row> -->
-                      <!-- </mat-chip-listbox> -->
-                    Date:
-                </p>
-                </mat-card-content>
-                <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-                </mat-card-actions>
-            </mat-card>
+            <a [href]="'https://www.inaturalist.org/observations/' + sighting.id" target="_blank">
+                <mat-card appearance="outlined" class="sighting-card" >
+                    <mat-card-header>
+                    <div mat-card-avatar
+                        class="sighting-header-image avatar">
+                        {{ sighting.user.login.slice(0,1).toUpperCase() + sighting.user.login.slice(1,2) }}
+                    </div>
+                    <mat-card-title>{{ getCommonName(sighting) }}</mat-card-title>
+                    <mat-card-subtitle>{{ sighting.iconic_taxon ? sighting.iconic_taxon.name : "" }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="sighting.photos[0] ? sighting.photos[0].medium_url : 'data:,' " alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                    <p>
+                        <mat-chip-listbox aria-label="Fish selection">
+                            <mat-chip *ngIf="sighting.taxon" class="classification">
+                                <sup>{{ sighting.taxon.rank }}</sup>
+                                {{ sighting.taxon.name }}
+                            </mat-chip>
+                            <mat-chip *ngIf="sighting.iconic_taxon" class="classification">
+                                <sup>{{ sighting.iconic_taxon.rank }}</sup>
+                                {{ sighting.iconic_taxon.name }}
+                            </mat-chip>
+                            <mat-chip>
+                                <sup>user</sup>
+                                {{ sighting.user.login }}
+                            </mat-chip>
+                            <mat-chip class="date">
+                                <sup>date</sup>
+                                {{ sighting.observed_on }}
+                            </mat-chip>
+                            <mat-chip>
+                                🌍 
+                                <a [href]="'http://maps.google.com/maps?q=' + sighting.latitude + ',' + sighting.longitude + '&t=k'"
+                                    target="_blank">
+                                    Maps Link
+                                </a>
+                            </mat-chip>
+                        </mat-chip-listbox>
+                    </p>
+                    </mat-card-content>
+                </mat-card>
+            </a>
         </mat-grid-tile>
       </mat-grid-list>
+      <span class="more"><a href="https://www.inaturalist.org/projects/jabulani" target="_blank">Click here to see more on iNaturalist</a></span>
 </div>
 
 <ng-template #spinner>

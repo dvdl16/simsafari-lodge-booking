@@ -15,4 +15,13 @@ export class SightingsListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getCommonName(sighting: Sighting): string {
+    if (sighting.taxon && sighting.taxon?.common_name && sighting.taxon?.common_name?.name) {
+      return sighting.taxon.common_name.name;
+    }
+    else {
+      return "Unidentified";
+    }
+  }
+
 }
