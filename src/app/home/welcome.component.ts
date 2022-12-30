@@ -1,7 +1,9 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
+import { InformationDialogComponent } from './information-dialog/information-dialog.component';
 
 @Component({
     templateUrl: './welcome.component.html',
@@ -22,7 +24,7 @@ export class WelcomeComponent implements OnInit{
     // Adjust grid based on screen size
     constructor(private breakpointObserver: BreakpointObserver,
                 private authService: AuthService,
-                private router: Router) {
+                public dialog: MatDialog) {
         this.breakpointObserver.observe([
           Breakpoints.XSmall,
           Breakpoints.Small,
@@ -57,4 +59,13 @@ export class WelcomeComponent implements OnInit{
         this.authService.logout();
         window.location.reload();
       }
+
+      openDialog(): void {
+        const dialogRef = this.dialog.open(InformationDialogComponent);
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+      }
+
 }

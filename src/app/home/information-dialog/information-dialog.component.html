@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Jabulani Bookings Website</h1>
+<mat-dialog-content class="mat-typography">
+  <h3>What is this website</h3>
+  <p>The idea of this website is to have a single place to create and manage bookings
+    for the guest houses on Jabulani. Users can view availability of guest houses and
+    make bookings.</p>
+
+  <h3>iNaturalist Integration</h3>
+  <p>The Sightings page shows all recent species observations on Jabulani, as logged
+    on <a href="inaturalist.org" target="_blank">iNaturalist</a>.</p>
+
+  <h3>Trails Map</h3>
+  <p>The Trails Map page shows a map with recorded GPS tracks of all trails on Jabulani.</p>
+
+  <h3>Why does the website look so strange/old/animated?</h3>
+  <p>The theme was inspired by <a href="https://en.wikipedia.org/wiki/SimSafari">SimSafari</a>, 
+    a Game Park construction and management simulation game released by Maxis on March 19, 1998.
+    This game was played extensively by the website author years ago.</p>
+
+    <img src='https://upload.wikimedia.org/wikipedia/en/3/35/SimSafari_Coverart.jpg'>
+
+  <h3>Technical Architecture overview</h3>
+
+  <p>This website is <a href="https://aws.amazon.com/serverless/">serverless</a> - the frontend
+    is statically hosted on an <a href="https://aws.amazon.com/s3/">S3 Bucket</a>, and the 
+    backend runs on <a href="https://aws.amazon.com/lambda/">Lambda</a>.</p>
+
+  <p>The frontend is built with <a href="https://angular.io/">Angular</a>, a platform and
+    framework for building client applications in HTML and TypeScript, and the backend has
+    been programmed in <a href="https://go.dev/">Go.</a>
+
+  <h3>Source Code</h3>
+  <p>Frontend: <a href="https://github.com/dvdl16/simsafari-lodge-booking">Github</a></p>
+  <p>Backend and Infrastructure: <a href="https://github.com/dvdl16/simsafari-lodge-booking-infra">Github</a></p>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>
