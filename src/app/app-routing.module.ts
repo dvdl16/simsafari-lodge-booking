@@ -6,7 +6,7 @@ import { AuthGuard } from './user/auth-guard.service';
 import { ShellComponent } from './home/shell.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { PageNotFoundComponent } from './home/page-not-found.component';
-import { CameratrapComponent } from './cameratrap/cameratrap.component';
+import { TrailsMapComponent } from './trailsmap/trailsmap.component';
 
 const appRoutes: Routes = [
   {
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
         loadChildren: () =>
           import('./sightings/sighting.module').then(m => m.SightingModule) 
       },
-      { path: 'camera-trap', component: CameratrapComponent}
+      { path: 'trails-map', component: TrailsMapComponent}
     ]
   },
   { path: '**', component: PageNotFoundComponent }

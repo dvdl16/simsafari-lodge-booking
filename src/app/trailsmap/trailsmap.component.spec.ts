@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CameratrapComponent } from './cameratrap.component';
+import { TrailsMapComponent } from './trailsmap.component';
 
-describe('CameratrapComponent', () => {
-  let component: CameratrapComponent;
-  let fixture: ComponentFixture<CameratrapComponent>;
+describe('TrailsMapComponent', () => {
+  let component: TrailsMapComponent;
+  let fixture: ComponentFixture<TrailsMapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CameratrapComponent ]
+      declarations: [ TrailsMapComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CameratrapComponent);
+    fixture = TestBed.createComponent(TrailsMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -23,7 +23,7 @@ import { UserModule } from './user/user.module';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { EffectsModule } from '@ngrx/effects';
-import { CameratrapComponent } from './cameratrap/cameratrap.component';
+import { TrailsMapComponent } from './trailsmap/trailsmap.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -40,7 +40,7 @@ import { ScriptService } from './_helpers/script.service';
     WelcomeComponent,
     PageNotFoundComponent,
     NavComponent,
-    CameratrapComponent
+    TrailsMapComponent
   ],
   imports: [
     BrowserModule,
@@ -61,16 +61,16 @@ import { ScriptService } from './_helpers/script.service';
     SharedModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi: true
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ErrorInterceptorService,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    },
     ScriptService
   ],
   bootstrap: [AppComponent]

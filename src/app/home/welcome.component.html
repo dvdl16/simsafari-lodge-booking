@@ -4,7 +4,7 @@
     <mat-grid-list #grid [cols]="cols" rowHeight="20:13" gutterSize="7vh">
       <mat-grid-tile class="frame" routerLink='/bookings'>
         <div class="menu-image">
-          <img src="./assets/images/bookings.PNG"><img>
+          <img src="./assets/images/bookings-min.png"><img>
         </div>
         <mat-grid-tile-footer>
           Manage Bookings
@@ -12,7 +12,12 @@
       </mat-grid-tile>
 
       <mat-grid-tile class="frame" routerLink='/sightings'>
-        <mat-grid-tile-footer>View Sightings</mat-grid-tile-footer>
+        <div class="menu-image">
+          <img src="./assets/images/sightings-min.png"><img>
+        </div>
+        <mat-grid-tile-footer>
+          View Sightings
+        </mat-grid-tile-footer>
       </mat-grid-tile>
 
       <mat-grid-tile class="menu-info-tile">
@@ -43,8 +48,8 @@
 
       </mat-grid-tile>
 
-      <mat-grid-tile class="frame" routerLink='/camera-trap'>
-        <mat-grid-tile-footer>Camera Trap Archive</mat-grid-tile-footer>
+      <mat-grid-tile class="frame" routerLink='/trails-map'>
+        <mat-grid-tile-footer>Trails Map</mat-grid-tile-footer>
       </mat-grid-tile>
 
     </mat-grid-list>
