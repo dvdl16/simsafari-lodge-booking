@@ -16,8 +16,13 @@ export class AuthInterceptorService implements HttpInterceptor {
   constructor(private store: Store<State>) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const hostRequiringAuth = new URL(environment.apiUrl)
-    const hostRequest = new URL(req.url)
+    let hostRequiringAuth;
+    try {
+      hostRequiringAuth = new URL(environment.apiUrl);
+    } catch (_) {
+      hostRequiringAuth = {hostname: ''}
+    }
+    const hostRequest = new URL(req.url);
     if (hostRequest.hostname === hostRequiringAuth.hostname) {
       return this.store.select(getCurrentUser).pipe(
         take(1),
