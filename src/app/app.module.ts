@@ -32,6 +32,7 @@ import { HydrationEffects } from './state/hydration/hydration.effects';
 import { metaReducers, reducers } from './state/app.state';
 import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
 import { ScriptService } from './_helpers/script.service';
+import { InformationDialogComponent } from './home/information-dialog/information-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ScriptService } from './_helpers/script.service';
     WelcomeComponent,
     PageNotFoundComponent,
     NavComponent,
-    TrailsMapComponent
+    TrailsMapComponent,
+    InformationDialogComponent
   ],
   imports: [
     BrowserModule,
