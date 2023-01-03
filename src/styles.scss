@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.payfast_compact_payment_modal {
+    background-color: #fff;
+    z-index: 1001 !important;
+}

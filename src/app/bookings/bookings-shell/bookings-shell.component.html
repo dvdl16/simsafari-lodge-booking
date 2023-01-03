@@ -1,11 +1,11 @@
-<div>
+<div *ngIf="payFastScriptLoaded; else spinner">
     <app-map
         [selectedHouse]="(selectedHouse$ | async)!">
     </app-map>
     <app-house-list 
         [errorMessage]="(errorMessage$ | async) ?? ''"
         [bookings$]="bookings$!"
-        [loading]="loading$ | async"
+        [loading]="bookingsLoading$ | async"
         [houses]="(houses$ | async) ?? []"
         [selectedBooking]="selectedBooking$ | async"
         [selectedHouse]="(selectedHouse$ | async)!"
@@ -17,3 +17,15 @@
         (bookingWasSelected)="bookingSelected($any($event))">
     </app-house-list>
 </div>
+
+<div *ngIf="!paymentBeingProcessed; else spinner">
+</div>
+
+<ng-template #spinner>
+    <div 
+        class="overlay-spinner"
+        fxLayout="row"
+        fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

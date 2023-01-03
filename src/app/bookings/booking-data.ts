@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { getStatusText, InMemoryDbService, ResponseOptions, STATUS } from 'angular-in-memory-web-api';
 import { Booking } from './booking.model';
+import { Payment } from './payment.model';
 
 @Injectable({
     providedIn: 'root'
@@ -71,12 +72,43 @@ export class BookingData implements InMemoryDbService {
                 userName: "Jane"
             },
         ];
-        return { bookings };
+        const payments: Payment[] = [
+        ];
+        return { bookings, payments };
     }
 
     genId(bookings: Booking[]): string {
         return randomString(40, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
     }
+
+    
+    post(reqInfo: RequestInfo | any) {
+        console.log("Received POST:", reqInfo);
+        if (reqInfo.collectionName == 'bookings') {
+            return reqInfo.utils.createResponse$(() => {          
+                return {
+                  body: reqInfo.req.body,
+                  status: STATUS.OK
+                };
+            });
+        }
+        else if (reqInfo.collectionName == 'payments') {
+            return reqInfo.utils.createResponse$(() => {
+                return {
+                  body: {"uuid":"2e8c4e9f-df3b-444e-9d04-41cd94604eba"},
+                  status: STATUS.OK
+                };
+            });
+        }
+    }
+
+    private finishOptions(options: ResponseOptions, reqInfo: RequestInfo | any) {
+        options.statusText = getStatusText(options.status || 500);
+        options.headers = reqInfo.headers;
+        options.url = reqInfo.url;
+        options.body = reqInfo.req.body;
+        return options;
+      }
 }
 
 function randomString(length: number, chars: string) {
