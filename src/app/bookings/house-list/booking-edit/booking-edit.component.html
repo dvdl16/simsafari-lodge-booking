@@ -65,7 +65,7 @@
       cdkFocusInitial
       [disabled]="!bookingForm.valid || !bookingForm.dirty"
       color="primary">
-      Book and Pay</button>
+      {{ data.booking ? 'Update' : 'Book and Pay' }}</button>
   </div>
 
 
