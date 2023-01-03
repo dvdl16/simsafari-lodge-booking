@@ -17,12 +17,14 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let hostRequiringAuth;
+    let hostRequest;
     try {
       hostRequiringAuth = new URL(environment.apiUrl);
+      hostRequest = new URL(req.url);
     } catch (_) {
       hostRequiringAuth = {hostname: ''}
+      hostRequest = {hostname: ''}
     }
-    const hostRequest = new URL(req.url);
     if (hostRequest.hostname === hostRequiringAuth.hostname) {
       return this.store.select(getCurrentUser).pipe(
         take(1),
