@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 import { ScriptService } from 'src/app/_helpers/script.service';
 import { Booking } from '../booking.model';
 import { House } from '../house.model';
@@ -8,6 +9,7 @@ import { Payment, PaymentResult } from '../payment.model';
 import { PaymentService } from '../payment.service';
 import { getBookings, getCurrentBooking, getCurrentHouse, getError, getHouses, isBookingsLoading, State } from '../state';
 import { BookingPageActions } from '../state/actions';
+import * as moment from 'moment';
 
 declare global {
   interface Window { payfast_do_onsite_payment: any; }
@@ -28,6 +30,9 @@ export class BookingsComponent implements OnInit {
   bookingsLoading$!: Observable<boolean>;
   payFastScriptLoaded: boolean = false;
   paymentBeingProcessed: boolean = false;
+  paymentSubscription!: Subscription;
+  housesSubscription!: Subscription;
+  houses!: House[];
 
   constructor(private store: Store<State>,
               private scriptService: ScriptService,
@@ -48,37 +53,50 @@ export class BookingsComponent implements OnInit {
     this.selectedBooking$ = this.store.select(getCurrentBooking);
     this.selectedHouse$ = this.store.select(getCurrentHouse);
     this.bookingsLoading$ = this.store.select(isBookingsLoading);
+    this.housesSubscription = this.houses$.subscribe(houses => {
+      this.houses = houses;
+    })
   }
 
   ngOnDestroy(): void {
+    this.housesSubscription.unsubscribe();
+    this.paymentSubscription.unsubscribe();
   }
 
   newBooking(bookingData: Booking): void {
     this.paymentBeingProcessed = true;
+    const from = moment(bookingData.fromDate, 'YYYY-MM-DD');
+    const to = moment(bookingData.toDate, 'YYYY-MM-DD');
+    const duration = to.diff(from, 'days');
+    const bookingHouse = this.houses.filter(h => h.id === bookingData.Houses[0])[0];
+    const rate = bookingHouse.rate * duration;
     const payment = new Payment(
-        "John",
-        "john@wick.com",
-        "800ed9d7-4364-4341-8b36-c6513047853a",
-        "100.00",
-        "Jabulani Guest Houses 2022-12-30",
-        "Booking for Jabulani Guest House 2022-12-30 to 2022-12-31 made on onsjabulani.co.za",
-        "6430d86a-e2c8-4faf-8d51-5e38bbf681dc"
+        bookingData.userName,
+        bookingData.userContact,
+        uuidv4(),
+        rate.toString(),
+        `Jabulani ${bookingHouse.name} ${bookingData.fromDate}`,
+        `Jabulani ${bookingHouse.name} ${bookingData.fromDate} to ${bookingData.toDate} made on onsjabulani.co.za`,
+        bookingData.id
     )
     let bookingsComp = this;
-    this.paymentService.createPayment(payment)
+    this.paymentSubscription = this.paymentService.createPayment(payment)
       .subscribe((paymentResult: PaymentResult) => {
         console.log(JSON.stringify(paymentResult));
-        window.payfast_do_onsite_payment(paymentResult, function(result: any) {
-          if (result === true) {
-            // Payment Completed
-            console.log("Payment Completed");
-            bookingsComp.store.dispatch(BookingPageActions.createBooking({booking: bookingData}));
-          }
-          else {
-            // Payment Window Closed
-            console.log("Payment Window Closed")
-          }
-        }); 
+        if (paymentResult.identifier) {
+          window.payfast_do_onsite_payment({"uuid":paymentResult.identifier}, function(result: any) {
+            if (result === true) {
+              // Payment Completed
+              console.log("Payment Completed");
+              bookingsComp.store.dispatch(BookingPageActions.createBooking({booking: bookingData}));
+            }
+            else {
+              // Payment Window Closed
+              console.log("Payment Window Closed")
+            }
+            bookingsComp.paymentBeingProcessed = false;
+          });
+        }
       });
   }
 
