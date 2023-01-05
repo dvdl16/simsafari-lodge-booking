@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { getStatusText, InMemoryDbService, ResponseOptions, STATUS } from 'angular-in-memory-web-api';
-import { Booking } from './booking.model';
-import { Payment } from './payment.model';
+import { Sighting } from '../../sightings/sighting.model';
+import { Booking } from '../../bookings/booking.model';
+import { Payment } from '../../bookings/payment.model';
+import sightingsJson from './sightings.json'; 
 
 @Injectable({
     providedIn: 'root'
@@ -74,7 +76,9 @@ export class BookingData implements InMemoryDbService {
         ];
         const payments: Payment[] = [
         ];
-        return { bookings, payments };
+        const sightings: Sighting[] = sightingsJson;
+
+        return { bookings, payments, sightings };
     }
 
     genId(bookings: Booking[]): string {

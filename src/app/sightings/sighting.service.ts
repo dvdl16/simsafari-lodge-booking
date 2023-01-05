@@ -16,14 +16,16 @@ export class SightingService {
   constructor(private http: HttpClient) { }
 
   getSightings(): Observable<Sighting[]> {
-    const params = {
-      limit: 25,
-      order: "desc",
-      order_by: "observed_on"
-    }
+    // Return all sightings records during development
+    const params = environment.production ?
+      {
+        limit: 25,
+        order: "desc",
+        order_by: "observed_on"
+      } : undefined
     return this.http.get<Sighting[]>(this.sightingsUrl, {params: params})
       .pipe(
-        tap(data => console.log(JSON.stringify(data))),
+        tap(data => console.log(data)),
         catchError(this.handleError)
       );
   }

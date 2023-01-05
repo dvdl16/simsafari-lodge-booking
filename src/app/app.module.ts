@@ -27,7 +27,7 @@ import { TrailsMapComponent } from './trailsmap/trailsmap.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { BookingData } from './bookings/booking-data';
+import { BookingData } from './shared/data/dummy-data';
 import { HydrationEffects } from './state/hydration/hydration.effects';
 import { metaReducers, reducers } from './state/app.state';
 import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
