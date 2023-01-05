@@ -9,7 +9,7 @@ import { Payment, PaymentResult } from '../payment.model';
 import { PaymentService } from '../payment.service';
 import { getBookings, getCurrentBooking, getCurrentHouse, getError, getHouses, isBookingsLoading, State } from '../state';
 import { BookingPageActions } from '../state/actions';
-import * as moment from 'moment';
+import moment from 'moment';
 
 declare global {
   interface Window { payfast_do_onsite_payment: any; }

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Booking } from '../../booking.model';
 import { House } from '../../house.model';
 import { BookingEditComponent } from '../booking-edit/booking-edit.component';
-import * as moment from 'moment';
+import moment from 'moment';
 import { User } from 'src/app/user/user';
 
 @Component({

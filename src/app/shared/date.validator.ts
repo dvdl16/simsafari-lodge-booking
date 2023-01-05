@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export class DateValidators {
     static relativeDate(min: number, max: number): ValidatorFn {
