@@ -59,8 +59,12 @@ export class BookingsComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.housesSubscription.unsubscribe();
-    this.paymentSubscription.unsubscribe();
+    if (this.housesSubscription){
+      this.housesSubscription.unsubscribe();
+    }
+    if (this.paymentSubscription){
+      this.paymentSubscription.unsubscribe();
+    }
   }
 
   newBooking(bookingData: Booking): void {
