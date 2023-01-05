@@ -1,5 +1,5 @@
 <div *ngIf="!loading; else spinner">
-    <mat-grid-list cols="3" rowHeight="1:1.1">
+    <mat-grid-list [cols]="cols" rowHeight="1:1.1">
         <mat-grid-tile 
             *ngFor="let sighting of sightings">
             <a [href]="'https://www.inaturalist.org/observations/' + sighting.id" target="_blank">

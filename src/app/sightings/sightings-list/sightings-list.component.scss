@@ -12,6 +12,14 @@ img {
     height: 220px;
 }
 
+@media (max-width: 500px) {
+    img {
+        object-fit: cover;
+        width: auto;
+        height: 140px;
+    }
+  }
+
 mat-chip.classification {
     background-color: #f98d05;
 }
