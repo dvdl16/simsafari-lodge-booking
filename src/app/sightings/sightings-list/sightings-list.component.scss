@@ -9,7 +9,7 @@
 img {
     object-fit: cover;
     width: auto;
-    height: 220px;
+    max-height: 180px;
 }
 
 @media (max-width: 500px) {
