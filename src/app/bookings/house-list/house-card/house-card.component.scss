@@ -1,7 +1,7 @@
 mat-cell, .mat-mdc-cell {
     // min-height: auto; // overrides the 'inherit' that set the min height of the row
     padding: 8px 10px 8px 2px;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .mat-icon {
@@ -64,4 +64,8 @@ div.container {
 
 th {
     font-size: 11px;
+}
+
+.empty-info {
+    font-size: 12px;
 }

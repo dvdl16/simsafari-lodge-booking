@@ -11,7 +11,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-        <span *ngIf="bookings.length === 0"><i>No upcoming bookings</i></span>
+        <span class="empty-info" *ngIf="bookings.length === 0"><i>No upcoming bookings</i></span>
 
         <table 
           mat-table
@@ -69,8 +69,18 @@
           <!-- Actions Column -->
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-              <button mat-icon-button color="accent" (click)="editBooking(element)">
+            <td 
+              mat-cell
+              *matCellDef="let element"
+              #tooltip="matTooltip"
+              [matTooltip]="(currentUser && currentUser.userId === element.userId) ? 'Edit' : 'You can only edit your own bookings'"
+              matTooltipPosition="right"
+              matTooltipHideDelay="100">
+              <button 
+                mat-icon-button
+                color="accent"
+                (click)="editBooking(element)"
+                [disabled]="!(currentUser && currentUser.userId === element.userId)">
                 <mat-icon>edit</mat-icon>
               </button>
             </td>
