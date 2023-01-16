@@ -13,5 +13,5 @@ export var Houses = [
     new House("2", "Small Guest House", "house2", true, 100),
     new House("3", "Lombards", "house3", false, 0),
     new House("4", "Rondavel", "house4", false, 0),
-    new House("5", "Big Guest House", "house5", true, 125),
+    new House("5", "Big Guest House", "house5", true, 150),
 ]
