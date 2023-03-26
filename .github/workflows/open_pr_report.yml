@@ -1,0 +1,21 @@
+name: "Report on open PRs"
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "0 0 * * 0"
+
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Report number of open PRs to Uptime Kuma
+      run: |
+        pr_count=$(curl -s https://api.github.com/repos/dvdl16/simsafari-lodge-booking/pulls | jq length)
+        acceptable="5"
+        status="down"
+        msg="More%20than%205%20PRs%20are%20open"
+        if (( $(echo "$pr_count < $acceptable" | bc -l) )); then
+           status="up"
+           msg="OK"
+        fi
+        curl -s GET "${{ secrets.UPTIME_KUMA_URL }}?status=$status&ping=$pr_count&msg=$msg"
