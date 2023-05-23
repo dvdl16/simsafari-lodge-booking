@@ -1,0 +1,43 @@
+name: Deploy Angular App to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: ng build --configuration=production
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Upload to S3
+        run: |
+          cd dist/simsafari-lodge-booking && cp index.html 404.html
+          aws s3 sync . s3://www.${{ secrets.DOMAIN_NAME }}
+
+      - name: Invalidate Cloudfront Cache
+        run: |
+          AWS_DISTRIBUTIONS=$(aws cloudfront list-distributions)
+          AWS_DISTRIBUTION_ID=$( echo $AWS_DISTRIBUTIONS | jq -r '.DistributionList.Items | map(select(any(.Aliases.Items[]; contains("www.${{ secrets.DOMAIN_NAME }}")))|.Id)[]')
+          aws cloudfront create-invalidation --distribution-id $AWS_DISTRIBUTION_ID --paths "/*";
