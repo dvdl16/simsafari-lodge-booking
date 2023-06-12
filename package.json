@@ -21,7 +21,7 @@
     "@angular/material-moment-adapter": "^16.0.3",
     "@angular/platform-browser": "^16.0.4",
     "@angular/platform-browser-dynamic": "^16.0.4",
-    "@angular/router": "^16.0.4",
+    "@angular/router": "^16.0.5",
     "@auth0/angular-jwt": "^5.1.2",
     "@ngrx/effects": "^16.0.1",
     "@ngrx/store": "^16.0.1",
