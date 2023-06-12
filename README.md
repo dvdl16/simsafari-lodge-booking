@@ -44,3 +44,11 @@ AWS_DISTRIBUTIONS=$(aws cloudfront list-distributions)
 AWS_DISTRIBUTION_ID=$( echo $AWS_DISTRIBUTIONS | jq -r '.DistributionList.Items | map(select(any(.Aliases.Items[]; contains("www.[DOMAIN NAME]")))|.Id)[]')
 aws cloudfront create-invalidation --distribution-id $AWS_DISTRIBUTION_ID --paths "/*";
 ```
+
+## Update
+
+To [update](https://update.angular.io/) your workspace and its dependencies:
+
+```shell
+ng update
+```
