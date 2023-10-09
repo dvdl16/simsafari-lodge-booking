@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^16.2.7",
     "@angular/router": "^16.2.7",
     "@auth0/angular-jwt": "^5.1.2",
-    "@ngrx/effects": "^16.2.0",
+    "@ngrx/effects": "^16.3.0",
     "@ngrx/store": "^16.2.0",
     "@ngrx/store-devtools": "^16.2.0",
     "angular-in-memory-web-api": "^0.16.0",
