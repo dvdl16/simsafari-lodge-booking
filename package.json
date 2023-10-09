@@ -20,7 +20,7 @@
     "@angular/material": "^16.2.6",
     "@angular/material-moment-adapter": "^16.2.6",
     "@angular/platform-browser": "^16.2.7",
-    "@angular/platform-browser-dynamic": "^16.2.7",
+    "@angular/platform-browser-dynamic": "^16.2.8",
     "@angular/router": "^16.2.7",
     "@auth0/angular-jwt": "^5.1.2",
     "@ngrx/effects": "^16.2.0",
