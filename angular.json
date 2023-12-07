@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "simsafari-lodge-booking:build:production"
+              "buildTarget": "simsafari-lodge-booking:build:production"
             },
             "development": {
-              "browserTarget": "simsafari-lodge-booking:build:development"
+              "buildTarget": "simsafari-lodge-booking:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "simsafari-lodge-booking:build"
+            "buildTarget": "simsafari-lodge-booking:build"
           }
         },
         "test": {
