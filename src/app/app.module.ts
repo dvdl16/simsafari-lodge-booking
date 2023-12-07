@@ -56,7 +56,7 @@ import { InformationDialogComponent } from './home/information-dialog/informatio
     StoreDevtoolsModule.instrument({ 
       name: 'SimSafari Lodge Booking Devtools',
       maxAge: 25, 
-      logOnly: environment.production }),
+      logOnly: environment.production , connectInZone: true}),
     EffectsModule.forRoot([HydrationEffects]),
     BrowserAnimationsModule,
     LayoutModule,
