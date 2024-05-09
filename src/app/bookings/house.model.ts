@@ -10,8 +10,8 @@ export class House {
 
 export var Houses = [
     new House("1", "Van der Laarses", "house1", false, 0),
-    new House("2", "Small Guest House", "house2", true, 100),
+    new House("2", "Small Guest House", "house2", true, 150),
     new House("3", "Lombards", "house3", false, 0),
     new House("4", "Bashonepie", "house4", false, 0),
-    new House("5", "Big Guest House", "house5", true, 150),
+    new House("5", "Big Guest House", "house5", true, 250),
 ]
