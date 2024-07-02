@@ -38,6 +38,9 @@ jobs:
 
       - name: Upload to S3
         run: |
+          ls -la .
+          ls -la dist
+          ls -la simsafari-lodge-booking
           cd dist/simsafari-lodge-booking && cp index.html 404.html
           aws s3 sync . s3://www.${{ secrets.DOMAIN_NAME }}
 
