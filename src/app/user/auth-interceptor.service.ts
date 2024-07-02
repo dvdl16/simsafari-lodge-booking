@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpInterceptor,
-  HttpRequest,
-  HttpHandler
-} from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { take, exhaustMap } from 'rxjs/operators';
 import { State } from '../state/app.state';
 import { Store } from '@ngrx/store';

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
@@ -34,47 +34,42 @@ import { ErrorInterceptorService } from './user/auth-error-interceptor.service';
 import { ScriptService } from './_helpers/script.service';
 import { InformationDialogComponent } from './home/information-dialog/information-dialog.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    ShellComponent,
-    WelcomeComponent,
-    PageNotFoundComponent,
-    NavComponent,
-    TrailsMapComponent,
-    InformationDialogComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
-      delay: 2000
-    }),
-    UserModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreDevtoolsModule.instrument({ 
-      name: 'SimSafari Lodge Booking Devtools',
-      maxAge: 25, 
-      logOnly: environment.production , connectInZone: true}),
-    EffectsModule.forRoot([HydrationEffects]),
-    BrowserAnimationsModule,
-    LayoutModule,
-    SharedModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true
-    },
-    ScriptService
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        ShellComponent,
+        WelcomeComponent,
+        PageNotFoundComponent,
+        NavComponent,
+        TrailsMapComponent,
+        InformationDialogComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        environment.production ? [] : HttpClientInMemoryWebApiModule.forRoot(BookingData, {
+            delay: 2000
+        }),
+        UserModule,
+        StoreModule.forRoot(reducers, { metaReducers }),
+        StoreDevtoolsModule.instrument({
+            name: 'SimSafari Lodge Booking Devtools',
+            maxAge: 25,
+            logOnly: environment.production, connectInZone: true
+        }),
+        EffectsModule.forRoot([HydrationEffects]),
+        BrowserAnimationsModule,
+        LayoutModule,
+        SharedModule], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
+            multi: true
+        },
+        ScriptService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
