@@ -73,9 +73,9 @@ $mat-custom-orange: (
 // $my-app-accent:  mat-palette($mat-custom-orange, 500, 900, A100);
 // $my-app-warn:    mat-palette($mat-deep-orange);
 
-$my-app-primary: mat.define-palette($mat-custom-dark-green);
-$my-app-accent:  mat.define-palette($mat-custom-orange, 500, 900, A100);
-$my-app-warn:    mat.define-palette(mat.$deep-orange-palette);
+$my-app-primary: mat.m2-define-palette($mat-custom-dark-green);
+$my-app-accent:  mat.m2-define-palette($mat-custom-orange, 500, 900, A100);
+$my-app-warn:    mat.m2-define-palette(mat.$m2-deep-orange-palette);
 
 
 
@@ -84,7 +84,7 @@ $my-app-warn:    mat.define-palette(mat.$deep-orange-palette);
 // @include angular-material-theme($my-app-theme);
 // @include mat.core-theme($my-app-theme);
 
-$my-app-theme: mat.define-dark-theme((
+$my-app-theme: mat.m2-define-dark-theme((
  color: (
    primary: $my-app-primary,
    accent: $my-app-accent,
