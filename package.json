@@ -29,7 +29,7 @@
     "@ngrx/store-devtools": "^18.0.2",
     "angular-in-memory-web-api": "^0.18.0",
     "rxjs": "~7.8.1",
-    "tslib": "^2.6.2",
+    "tslib": "^2.7.0",
     "uuid": "^10.0.0",
     "zone.js": "~0.14.10"
   },
