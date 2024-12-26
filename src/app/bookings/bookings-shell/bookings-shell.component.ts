@@ -16,9 +16,10 @@ declare global {
 }
 
 @Component({
-  selector: 'app-bookings-shell',
-  templateUrl: './bookings-shell.component.html',
-  styleUrls: ['./bookings-shell.component.scss']
+    selector: 'app-bookings-shell',
+    templateUrl: './bookings-shell.component.html',
+    styleUrls: ['./bookings-shell.component.scss'],
+    standalone: false
 })
 export class BookingsComponent implements OnInit {
   errorMessage!: string;

@@ -6,9 +6,10 @@ import { getSightings, isSightingsLoading, State } from './state';
 import { SightingPageActions } from './state/actions';
 
 @Component({
-  selector: 'app-sightings',
-  templateUrl: './sightings.component.html',
-  styleUrls: ['./sightings.component.scss']
+    selector: 'app-sightings',
+    templateUrl: './sightings.component.html',
+    styleUrls: ['./sightings.component.scss'],
+    standalone: false
 })
 export class SightingsComponent implements OnInit {
   sightings$!: Observable<Sighting[]>;

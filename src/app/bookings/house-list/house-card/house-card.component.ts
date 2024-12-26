@@ -7,9 +7,10 @@ import moment from 'moment';
 import { User } from 'src/app/user/user';
 
 @Component({
-  selector: 'app-house-card',
-  templateUrl: './house-card.component.html',
-  styleUrls: ['./house-card.component.scss']
+    selector: 'app-house-card',
+    templateUrl: './house-card.component.html',
+    styleUrls: ['./house-card.component.scss'],
+    standalone: false
 })
 export class HouseCardComponent implements OnInit {
   @Input() house!: House;

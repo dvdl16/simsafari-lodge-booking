@@ -7,7 +7,8 @@ import { InformationDialogComponent } from './information-dialog/information-dia
 
 @Component({
     templateUrl: './welcome.component.html',
-    styleUrls: ['./welcome.component.scss']
+    styleUrls: ['./welcome.component.scss'],
+    standalone: false
 })
 export class WelcomeComponent implements OnInit{
 

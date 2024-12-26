@@ -12,9 +12,10 @@ import { User } from 'src/app/user/user';
 
 
 @Component({
-  selector: 'app-booking-edit',
-  templateUrl: './booking-edit.component.html',
-  styleUrls: ['./booking-edit.component.scss']
+    selector: 'app-booking-edit',
+    templateUrl: './booking-edit.component.html',
+    styleUrls: ['./booking-edit.component.scss'],
+    standalone: false
 })
 export class BookingEditComponent implements OnInit {
   bookingForm!: FormGroup;

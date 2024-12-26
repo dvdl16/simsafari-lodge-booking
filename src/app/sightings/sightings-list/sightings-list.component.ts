@@ -3,9 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Sighting } from '../sighting.model';
 
 @Component({
-  selector: 'app-sightings-list',
-  templateUrl: './sightings-list.component.html',
-  styleUrls: ['./sightings-list.component.scss']
+    selector: 'app-sightings-list',
+    templateUrl: './sightings-list.component.html',
+    styleUrls: ['./sightings-list.component.scss'],
+    standalone: false
 })
 export class SightingsListComponent implements OnInit {
   @Input() loading!: boolean | null

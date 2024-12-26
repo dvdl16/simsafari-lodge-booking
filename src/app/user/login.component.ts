@@ -9,8 +9,9 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: false
 })
 export class LoginComponent implements OnInit {
   pageTitle = 'Log In';

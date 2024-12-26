@@ -8,9 +8,10 @@ import { House } from '../house.model';
 import { getBookingsForHouse, State } from '../state';
 
 @Component({
-  selector: 'app-house-list',
-  templateUrl: './house-list.component.html',
-  styleUrls: ['./house-list.component.scss']
+    selector: 'app-house-list',
+    templateUrl: './house-list.component.html',
+    styleUrls: ['./house-list.component.scss'],
+    standalone: false
 })
 export class HouseListComponent implements OnInit {
   @Input() errorMessage!: string;
