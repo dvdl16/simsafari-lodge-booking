@@ -24,7 +24,7 @@
     "@angular/router": "^19.1.4",
     "@auth0/angular-jwt": "^5.2.0",
     "@ngrx/effects": "^19.0.0",
-    "@ngrx/operators": "^19.0.0",
+    "@ngrx/operators": "^19.0.1",
     "@ngrx/store": "^19.0.0",
     "@ngrx/store-devtools": "^19.0.0",
     "angular-in-memory-web-api": "^0.19.0",
