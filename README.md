@@ -18,11 +18,11 @@ A Web App to, among others, manage bookings for our small family land
 <img src="docs/images/telegram.png" width=30%>
 
 
-## Features
+## Showcase
 
 Here is a screen recording of the deployed site
 
-<video controls src="docs/images/20250810-bookings.mp4" title="Screen Recording"></video>
+<video src="docs/images/20250810-bookings.mp4" title="Screen Recording"></video>
 
 ## Deployment
 
