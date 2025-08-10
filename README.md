@@ -17,6 +17,13 @@ A Web App to, among others, manage bookings for our small family land
 
 <img src="docs/images/telegram.png" width=30%>
 
+
+## Features
+
+Here is a screen recording of the deployed site
+
+<video controls src="docs/images/20250810-bookings.mp4" title="Screen Recording"></video>
+
 ## Deployment
 
 A commit to `main` will trigger a Github Action that builds the artefacts and deploy it to an AWS S3 Bucket. See the [simsafari-lodge-booking-infra](https://github.com/dvdl16/simsafari-lodge-booking-infra) repo for the infrastrictire.
