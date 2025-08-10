@@ -22,7 +22,7 @@ A Web App to, among others, manage bookings for our small family land
 
 Here is a screen recording of the deployed site
 
-<video src="docs/images/20250810-bookings.mp4" title="Screen Recording"></video>
+<img src="docs/images/bookings.gif" width=80%>
 
 ## Deployment
 
