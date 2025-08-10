@@ -1,59 +1,66 @@
-<div *ngIf="!loading; else spinner">
+@if (!loading) {
+  <div>
     <mat-grid-list [cols]="cols" rowHeight="1:1.08" [gutterSize]="'5px'">
-        <mat-grid-tile 
-            *ngFor="let sighting of sightings">
-            <a [href]="'https://www.inaturalist.org/observations/' + sighting.id" target="_blank">
-                <mat-card appearance="outlined" class="sighting-card" >
-                    <mat-card-header>
-                    <div mat-card-avatar
-                        class="sighting-header-image avatar">
-                        {{ sighting.user.login.slice(0,1).toUpperCase() + sighting.user.login.slice(1,2) }}
-                    </div>
-                    <mat-card-title>{{ getCommonName(sighting) }}</mat-card-title>
-                    <mat-card-subtitle>{{ sighting.iconic_taxon ? sighting.iconic_taxon.name : "" }}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="sighting.photos[0] ? sighting.photos[0].medium_url : 'data:,' " alt="Photo of a Shiba Inu">
-                    <mat-card-content>
-                    <p>
-                        <mat-chip-listbox aria-label="Fish selection">
-                            <mat-chip *ngIf="sighting.taxon" class="classification">
-                                <sup>{{ sighting.taxon.rank }}</sup>
-                                {{ sighting.taxon.name }}
-                            </mat-chip>
-                            <mat-chip *ngIf="sighting.iconic_taxon" class="classification">
-                                <sup>{{ sighting.iconic_taxon.rank }}</sup>
-                                {{ sighting.iconic_taxon.name }}
-                            </mat-chip>
-                            <mat-chip>
-                                <sup>user</sup>
-                                {{ sighting.user.login }}
-                            </mat-chip>
-                            <mat-chip class="date">
-                                <sup>date</sup>
-                                {{ sighting.observed_on }}
-                            </mat-chip>
-                            <mat-chip>
-                                🌍 
-                                <a [href]="'http://maps.google.com/maps?q=' + sighting.latitude + ',' + sighting.longitude + '&t=k'"
-                                    target="_blank">
-                                    Maps Link
-                                </a>
-                            </mat-chip>
-                        </mat-chip-listbox>
-                    </p>
-                    </mat-card-content>
-                </mat-card>
-            </a>
+      @for (sighting of sightings; track sighting) {
+        <mat-grid-tile
+          >
+          <a [href]="'https://www.inaturalist.org/observations/' + sighting.id" target="_blank">
+            <mat-card appearance="outlined" class="sighting-card" >
+              <mat-card-header>
+                <div mat-card-avatar
+                  class="sighting-header-image avatar">
+                  {{ sighting.user.login.slice(0,1).toUpperCase() + sighting.user.login.slice(1,2) }}
+                </div>
+                <mat-card-title>{{ getCommonName(sighting) }}</mat-card-title>
+                <mat-card-subtitle>{{ sighting.iconic_taxon ? sighting.iconic_taxon.name : "" }}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image [src]="sighting.photos[0] ? sighting.photos[0].medium_url : 'data:,' " alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                <p>
+                  <mat-chip-listbox aria-label="Fish selection">
+                    @if (sighting.taxon) {
+                      <mat-chip class="classification">
+                        <sup>{{ sighting.taxon.rank }}</sup>
+                        {{ sighting.taxon.name }}
+                      </mat-chip>
+                    }
+                    @if (sighting.iconic_taxon) {
+                      <mat-chip class="classification">
+                        <sup>{{ sighting.iconic_taxon.rank }}</sup>
+                        {{ sighting.iconic_taxon.name }}
+                      </mat-chip>
+                    }
+                    <mat-chip>
+                      <sup>user</sup>
+                      {{ sighting.user.login }}
+                    </mat-chip>
+                    <mat-chip class="date">
+                      <sup>date</sup>
+                      {{ sighting.observed_on }}
+                    </mat-chip>
+                    <mat-chip>
+                      🌍
+                      <a [href]="'http://maps.google.com/maps?q=' + sighting.latitude + ',' + sighting.longitude + '&t=k'"
+                        target="_blank">
+                        Maps Link
+                      </a>
+                    </mat-chip>
+                  </mat-chip-listbox>
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </a>
         </mat-grid-tile>
-      </mat-grid-list>
-      <span class="more"><a href="https://www.inaturalist.org/projects/jabulani" target="_blank">Click here to see more on iNaturalist</a></span>
-</div>
+      }
+    </mat-grid-list>
+    <span class="more"><a href="https://www.inaturalist.org/projects/jabulani" target="_blank">Click here to see more on iNaturalist</a></span>
+  </div>
+} @else {
+  <div
+    class="spinner-container"
+    fxLayout="row"
+    fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>
+}
 
-<ng-template #spinner>
-    <div 
-        class="spinner-container"
-        fxLayout="row"
-        fxLayoutAlign="center center">
-        <mat-spinner></mat-spinner>
-    </div>
-</ng-template>

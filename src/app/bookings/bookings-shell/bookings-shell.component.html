@@ -1,31 +1,41 @@
-<div *ngIf="payFastScriptLoaded; else spinner">
+@if (payFastScriptLoaded) {
+  <div>
     <app-map
-        [selectedHouse]="(selectedHouse$ | async)!">
+      [selectedHouse]="(selectedHouse$ | async)!">
     </app-map>
-    <app-house-list 
-        [errorMessage]="(errorMessage$ | async) ?? ''"
-        [bookings$]="bookings$!"
-        [loading]="bookingsLoading$ | async"
-        [houses]="(houses$ | async) ?? []"
-        [selectedBooking]="selectedBooking$ | async"
-        [selectedHouse]="(selectedHouse$ | async)!"
-        (createNewBooking)="newBooking($event)"
-        (updateExistingBooking)="updateBooking($event)"
-        (deleteExistingBooking)="deleteBooking($event)"
-        (houseWasSelected)="houseSelected($any($event))"
-        (houseWasDeselected)="houseDeselected($any($event))"
-        (bookingWasSelected)="bookingSelected($any($event))">
+    <app-house-list
+      [errorMessage]="(errorMessage$ | async) ?? ''"
+      [bookings$]="bookings$!"
+      [loading]="bookingsLoading$ | async"
+      [houses]="(houses$ | async) ?? []"
+      [selectedBooking]="selectedBooking$ | async"
+      [selectedHouse]="(selectedHouse$ | async)!"
+      (createNewBooking)="newBooking($event)"
+      (updateExistingBooking)="updateBooking($event)"
+      (deleteExistingBooking)="deleteBooking($event)"
+      (houseWasSelected)="houseSelected($any($event))"
+      (houseWasDeselected)="houseDeselected($any($event))"
+      (bookingWasSelected)="bookingSelected($any($event))">
     </app-house-list>
-</div>
+  </div>
+} @else {
+  <div
+    class="overlay-spinner"
+    fxLayout="row"
+    fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>
+}
 
-<div *ngIf="!paymentBeingProcessed; else spinner">
-</div>
+@if (!paymentBeingProcessed) {
+  <div>
+  </div>
+} @else {
+  <div
+    class="overlay-spinner"
+    fxLayout="row"
+    fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>
+}
 
-<ng-template #spinner>
-    <div 
-        class="overlay-spinner"
-        fxLayout="row"
-        fxLayoutAlign="center center">
-        <mat-spinner></mat-spinner>
-    </div>
-</ng-template>

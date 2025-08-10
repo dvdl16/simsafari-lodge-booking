@@ -1,36 +1,36 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       <h2 class="page-title">
         Jabulani <br>Bookings
       </h2>
     </mat-toolbar>
     <mat-nav-list (click)="toggle(drawer)">
-      
+
       <mat-list-item routerLink='/welcome'>
         <button mat-icon-button>
           <mat-icon>view_quilt</mat-icon>
         </button>
         <a matLine>Menu</a>
       </mat-list-item>
-      
+
       <mat-list-item routerLink='/bookings'>
         <button mat-icon-button>
           <mat-icon>hotel</mat-icon>
         </button>
         <a matLine>Bookings</a>
       </mat-list-item>
-      
+
       <mat-list-item routerLink='/sightings'>
         <button mat-icon-button>
           <mat-icon>pets</mat-icon>
         </button>
         <a matLine>Sightings</a>
       </mat-list-item>
-      
+
       <mat-list-item routerLink='/trails-map'>
         <button mat-icon-button>
           <mat-icon>local_see</mat-icon>
@@ -42,14 +42,16 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+      @if (isHandset$ | async) {
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      }
     </mat-toolbar>
 
     <div class='container main-content'>

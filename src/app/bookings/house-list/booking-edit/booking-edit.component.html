@@ -1,18 +1,22 @@
 <form [formGroup]="bookingForm" (ngSubmit)="submit(bookingForm)">
-  <h2 mat-dialog-title *ngIf="data.booking">Edit Booking</h2>
-  <h2 mat-dialog-title *ngIf="!data.booking">New Booking</h2>
+  @if (data.booking) {
+    <h2 mat-dialog-title>Edit Booking</h2>
+  }
+  @if (!data.booking) {
+    <h2 mat-dialog-title>New Booking</h2>
+  }
   <div mat-dialog-content>
     <p>Please enter the booking details for house</p>
     <p>
       <mat-form-field appearance="fill" class='date-range'>
         <mat-label>Enter From and To dates</mat-label>
         <mat-date-range-input formGroupName="range" [rangePicker]="picker">
-          <input 
+          <input
             matStartDate
             formControlName="fromDate"
             placeholder="Start date"
             [ngClass]="{'is-invalid': displayMessage['fromDate'] }">
-          <input 
+          <input
             matEndDate
             formControlName="toDate"
             placeholder="End date"
@@ -21,8 +25,12 @@
         <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
-        <mat-error *ngIf="displayMessage['fromDate']">{{displayMessage['fromDate']}}</mat-error>
-        <mat-error *ngIf="displayMessage['toDate']">{{displayMessage['toDate']}}</mat-error>
+        @if (displayMessage['fromDate']) {
+          <mat-error>{{displayMessage['fromDate']}}</mat-error>
+        }
+        @if (displayMessage['toDate']) {
+          <mat-error>{{displayMessage['toDate']}}</mat-error>
+        }
       </mat-form-field>
     </p>
 
@@ -33,39 +41,44 @@
           formControlName="house">
           <mat-option [value]="data.house.id">{{ data.house.name }}</mat-option>
         </mat-select>
-        <mat-error *ngIf="displayMessage['house']">{{displayMessage['house']}}</mat-error>
+        @if (displayMessage['house']) {
+          <mat-error>{{displayMessage['house']}}</mat-error>
+        }
       </mat-form-field>
     </p>
 
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Guest Details</mat-label>
-        <textarea 
+        <textarea
           formControlName="guestDetails"
           matInput [ngClass]="{'is-invalid': displayMessage['guestDetails']}">
         </textarea>
-        <mat-error *ngIf="displayMessage['guestDetails']">{{displayMessage['guestDetails']}}</mat-error>
+        @if (displayMessage['guestDetails']) {
+          <mat-error>{{displayMessage['guestDetails']}}</mat-error>
+        }
       </mat-form-field>
     </p>
   </div>
   <div mat-dialog-actions>
-    <button 
-      *ngIf="data.booking"
-      mat-button
-      (click)="deleteBooking()"
-      color="warn"
-      class="small">
-      <mat-icon>delete</mat-icon>
-      Cancel Booking
-    </button>
+    @if (data.booking) {
+      <button
+        mat-button
+        (click)="deleteBooking()"
+        color="warn"
+        class="small">
+        <mat-icon>delete</mat-icon>
+        Cancel Booking
+      </button>
+    }
     <button mat-button (click)="onNoClick()">Close</button>
-    <button 
+    <button
       mat-raised-button
       type="submit"
       cdkFocusInitial
       [disabled]="!bookingForm.valid || !bookingForm.dirty"
       color="primary">
-      {{ data.booking ? 'Update' : 'Book and Pay' }}</button>
+    {{ data.booking ? 'Update' : 'Book and Pay' }}</button>
   </div>
 
 

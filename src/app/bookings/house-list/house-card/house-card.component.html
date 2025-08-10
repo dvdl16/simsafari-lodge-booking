@@ -3,101 +3,96 @@
     id="{{ 'panel-' + house.id }}"
     (opened)="houseCardOpened(house)"
     (closed)="houseCardClosed(house)">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{house.name}}
-        </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{house.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-        <span class="empty-info" *ngIf="bookings.length === 0"><i>No upcoming bookings</i></span>
+    @if (bookings.length === 0) {
+      <span class="empty-info"><i>No upcoming bookings</i></span>
+    }
 
-        <table 
-          mat-table
-          [dataSource]="bookings"
-          class="mat-elevation-z8 demo-table"
-          *ngIf="bookings.length > 0">
+    @if (bookings.length > 0) {
+      <table
+        mat-table
+        [dataSource]="bookings"
+        class="mat-elevation-z8 demo-table"
+        >
+        <!-- bookingId Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>id</th>
+          <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+        <!-- userName Column -->
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef>User and Guest Details</th>
+          <!-- <td mat-cell *matCellDef="let element">{{element.userName}}</td> -->
+          <td mat-cell *matCellDef="let element">
+            @if (element.userName + element.guestDetails > 28) {
+              <details>
+                <summary>{{ (element.userName + ": " + element.guestDetails).slice(0, 28) }}...</summary>
+                {{ (element.userName + ": " + element.guestDetails).slice(-1 * ((element.userName + ": " + element.guestDetails).length - 28)) }}
+              </details>
+            } @else {
+              <span>{{ element.userName + ": " + element.guestDetails }}</span>
+            }
+          </td>
+        </ng-container>
+        <!-- fromDate Column -->
+        <ng-container matColumnDef="fromDate">
+          <th mat-header-cell *matHeaderCellDef>From</th>
+          <td mat-cell *matCellDef="let element">{{element.fromDate}}</td>
+        </ng-container>
+        <!-- toDate Column -->
+        <ng-container matColumnDef="toDate">
+          <th mat-header-cell *matHeaderCellDef>To</th>
+          <td mat-cell *matCellDef="let element">{{element.toDate}}</td>
+        </ng-container>
+        <!-- house Column -->
+        <ng-container matColumnDef="house">
+          <th mat-header-cell *matHeaderCellDef>house</th>
+          <td mat-cell *matCellDef="let element">{{element.house}}</td>
+        </ng-container>
+        <!-- guestDetails Column -->
+        <ng-container matColumnDef="guestDetails">
+          <th mat-header-cell *matHeaderCellDef>guestDetails</th>
+          <td mat-cell *matCellDef="let element">{{element.guestDetails}}</td>
+        </ng-container>
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            #tooltip="matTooltip"
+            [matTooltip]="(currentUser && currentUser.userId === element.userId) ? 'Edit' : 'You can only edit your own bookings'"
+            matTooltipPosition="right"
+            matTooltipHideDelay="100">
+            <button
+              mat-icon-button
+              color="accent"
+              (click)="editBooking(element)"
+              [disabled]="!(currentUser && currentUser.userId === element.userId)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    }
 
-          <!-- bookingId Column -->
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>id</th>
-            <td mat-cell *matCellDef="let element">{{element.id}}</td>
-          </ng-container>
-        
-          <!-- userName Column -->
-          <ng-container matColumnDef="userName">
-            <th mat-header-cell *matHeaderCellDef>User and Guest Details</th>
-            <!-- <td mat-cell *matCellDef="let element">{{element.userName}}</td> -->
-            <td mat-cell *matCellDef="let element">
-              <ng-template [ngIf]="element.userName + element.guestDetails > 28" [ngIfElse]="shortName">
-                <details>
-                  <summary>{{ (element.userName + ": " + element.guestDetails).slice(0, 28) }}...</summary>
-                  {{ (element.userName + ": " + element.guestDetails).slice(-1 * ((element.userName + ": " + element.guestDetails).length - 28)) }}
-                </details>
-              </ng-template>
-              <ng-template #shortName>
-                <span>{{ element.userName + ": " + element.guestDetails }}</span>
-              </ng-template>
-            </td>
-          </ng-container>
-        
-          <!-- fromDate Column -->
-          <ng-container matColumnDef="fromDate">
-            <th mat-header-cell *matHeaderCellDef>From</th>
-            <td mat-cell *matCellDef="let element">{{element.fromDate}}</td>
-          </ng-container>
-        
-          <!-- toDate Column -->
-          <ng-container matColumnDef="toDate">
-            <th mat-header-cell *matHeaderCellDef>To</th>
-            <td mat-cell *matCellDef="let element">{{element.toDate}}</td>
-          </ng-container>
-        
-          <!-- house Column -->
-          <ng-container matColumnDef="house">
-            <th mat-header-cell *matHeaderCellDef>house</th>
-            <td mat-cell *matCellDef="let element">{{element.house}}</td>
-          </ng-container>
-        
-          <!-- guestDetails Column -->
-          <ng-container matColumnDef="guestDetails">
-            <th mat-header-cell *matHeaderCellDef>guestDetails</th>
-            <td mat-cell *matCellDef="let element">{{element.guestDetails}}</td>
-          </ng-container>
-        
-          <!-- Actions Column -->
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td 
-              mat-cell
-              *matCellDef="let element"
-              #tooltip="matTooltip"
-              [matTooltip]="(currentUser && currentUser.userId === element.userId) ? 'Edit' : 'You can only edit your own bookings'"
-              matTooltipPosition="right"
-              matTooltipHideDelay="100">
-              <button 
-                mat-icon-button
-                color="accent"
-                (click)="editBooking(element)"
-                [disabled]="!(currentUser && currentUser.userId === element.userId)">
-                <mat-icon>edit</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      
 
-      <mat-action-row>
-        <button 
-          mat-raised-button
-          color="primary"
-          [disabled]="!house.allowBookings"
-          (click)="newBooking()">
-          {{ house.allowBookings ? "New Booking" : "Bookings Disabled"  }}</button>
-      </mat-action-row>
+    <mat-action-row>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!house.allowBookings"
+        (click)="newBooking()">
+      {{ house.allowBookings ? "New Booking" : "Bookings Disabled"  }}</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </div>
