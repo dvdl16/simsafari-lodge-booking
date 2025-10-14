@@ -38,7 +38,7 @@
     "@angular/cli": "^20.3.5",
     "@angular/compiler-cli": "^20.3.4",
     "@types/jasmine": "~5.1.4",
-    "@types/node": "^22.18.10",
+    "@types/node": "^24.7.2",
     "@types/uuid": "^10.0.0",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.4",
