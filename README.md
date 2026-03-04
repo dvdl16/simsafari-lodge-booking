@@ -62,3 +62,11 @@ To [update](https://update.angular.io/) your workspace and its dependencies:
 ```shell
 ng update
 ```
+and
+
+```shell
+npx npm-check-updates
+npx npm-check-updates -u
+
+npm install
+```
